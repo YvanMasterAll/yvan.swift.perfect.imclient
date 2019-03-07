@@ -1,0 +1,6 @@
+framework module Pods_IMClient {
+  umbrella header "Pods-IMClient-umbrella.h"
+
+  export *
+  module * { export * }
+}
