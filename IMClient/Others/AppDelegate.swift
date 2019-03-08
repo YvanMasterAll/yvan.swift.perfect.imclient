@@ -16,10 +16,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
         //MARK: - 创建窗口
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window?.backgroundColor = UIColor.white
+        //MARK: - 环境初始化
+        Environment.initialize()
         //MARK: - FPS
         #if DEBUG
         TWWatchdogInspector.setEnableMainthreadStallingException(false)

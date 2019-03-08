@@ -15,7 +15,8 @@ public struct BaseResult: Mappable {
     var result      : ResultType!
     var msg         : String?
     var dataArray   : [String: Any]?
-    var dataDict    : [[String: Any]]?
+    var dataDict    : [String: Any]?
+    var dataDicts   : [[String: Any]]?
     
     public init(){}
     
@@ -28,7 +29,9 @@ public struct BaseResult: Mappable {
         msg         <- map["msg"]
         dataArray   <- map["dataArray"]
         dataDict    <- map["dataDict"]
-        result      = ResultType(code: ResultCode(code)!, msg: msg)
+        dataDicts   <- map["dataDicts"]
+        result      = ResultType(code: ResultCode(code) == nil ? ResultCode.unknown:ResultCode(code)!,
+                                 msg: msg)
     }
 }
 
@@ -37,9 +40,13 @@ struct ResultType {
     var code    : ResultCode
     var msg     : String
     
+    init(code: ResultCode, msg: String = "") {
+        self.code = code
+        self.msg = msg == "" ? code.msg():msg
+    }
     init(code: ResultCode, msg: String?) {
         self.code = code
-        self.msg = msg != nil ? msg!:code.msg()
+        self.msg = msg == nil ? code.msg():msg!
     }
 }
 
