@@ -13,7 +13,8 @@ import WatchdogInspector
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     //MARK: - 声明区域
-    var window: UIWindow?
+    var window          : UIWindow?
+    var rotationLock    : Bool = true //横竖屏锁定
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         //MARK: - 创建窗口
@@ -35,10 +36,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     //MARK: - Test
     func setupTest() {
-        let vc = ChatVC.storyboard(from: "Chat")
+        //let vc = ChatVC.storyboard(from: "Chat")
+        let vc = UserRegisterVC.storyboard(from: "User")
         let nc = BaseNavigationController(rootViewController: vc)
         self.window?.rootViewController = nc
         self.window?.makeKeyAndVisible()
+    }
+    
+    //MARK: - 应用扩展
+    func application(_ application: UIApplication,
+                     shouldAllowExtensionPointIdentifier extensionPointIdentifier: UIApplication.ExtensionPointIdentifier) -> Bool {
+        //MARK: - 键盘扩展
+        if extensionPointIdentifier == UIApplication.ExtensionPointIdentifier.keyboard {
+            if let navs = window?.rootViewController?.children[0].children { //所有导航
+                for nav in navs {                                            //导航遍历
+                    for vc in nav.children {                                 //VC遍历
+                        if vc is BaseViewController {                        //VC判断
+                            return (vc as! BaseViewController).thirdKeyboard
+                        }
+                    }
+                }
+            }
+        }
+        return true
+    }
+    
+    //MARK: - 横竖屏
+    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+        if self.rotationLock {
+            return UIInterfaceOrientationMask.portrait
+        } else {
+            return UIInterfaceOrientationMask.all
+        }
     }
 
     func applicationWillResignActive(_ application: UIApplication) { }

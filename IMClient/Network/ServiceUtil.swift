@@ -10,7 +10,7 @@ import Foundation
 
 struct ServiceUtil {
     
-    //MARK: - 保存用户
+    //MARK: - 保存用户信息
     static func saveUser(_ user: User) {
         if let avatar = user.avatar {
             Environment.avatar = avatar
@@ -20,5 +20,5 @@ struct ServiceUtil {
         }
     }
     
-    //TODO: - 保存用户信息
+    //TODO: - 保存用户详情
 }

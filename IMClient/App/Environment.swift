@@ -35,15 +35,33 @@ struct Environment {
         return true
     }
     
+    //MARK: - 用户信息
+    static var nickname: String? {
+        get {
+            return self.userDefaults.value(forKey: UserDefaultsKeys.nickname.rawValue) as! String?
+        }
+        set {
+            self.userDefaults.setValue(newValue, forKey: UserDefaultsKeys.nickname.rawValue)
+        }
+    }
+    static var avatar: String? {
+        get {
+            return self.userDefaults.value(forKey: UserDefaultsKeys.avatar.rawValue) as! String?
+        }
+        set {
+            self.userDefaults.setValue(newValue, forKey: UserDefaultsKeys.avatar.rawValue)
+        }
+    }
+    
     //MARK: - 环境清理
     static func clearUser() {
         self.userDefaults.removeObject(forKey: UserDefaultsKeys.token.rawValue)
     }
     
     private enum UserDefaultsKeys: String {
-        case token  = "user_auth_token"
-        case nick       =   "user_info_nickname"
-        case Portrait       =   "user_info_portrait"
+        case token      =   "user_auth_token"
+        case nickname   =   "user_nickname"
+        case avatar     =   "user_avatar"
     }
     
     //MARK: - 私有成员

@@ -15,6 +15,11 @@ class ChatVC: BaseViewController {
         
         setupUI()
     }
+    
+    //MARK: - 私有成员
+    fileprivate lazy var chatView: IMUIMessageCollectionView = { //聊天视图
+        return IMUIMessageCollectionView()
+    }()
 }
 
 extension ChatVC {

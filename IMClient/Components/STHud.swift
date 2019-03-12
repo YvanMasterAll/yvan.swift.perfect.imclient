@@ -1,5 +1,5 @@
 //
-//  BaseHUD.swift
+//  STHud.swift
 //  IMClient
 //
 //  Created by Yiqiang Zeng on 2019/3/8.
@@ -19,7 +19,7 @@ private let textFont = UIFont.systemFont(ofSize: 14)    //字体
 private let keyWindow = UIApplication.shared.keyWindow! //窗口
 private let HUDIdentifier_SV = "HUDScreenView"          //遮挡
 
-enum BaseHUDType {
+enum STHudType {
     case success //image + text
     case error   //image + text
     case info    //image + text
@@ -27,20 +27,20 @@ enum BaseHUDType {
     case text    //text
 }
 
-public class BaseHUD: UIView {
+public class STHud: UIView {
     
     //MARK: - 声明区域
     private var delay           : TimeInterval = delayTime
     private var imageView       : UIImageView?
     private var activityView    : UIActivityIndicatorView?
-    private var type            : BaseHUDType?
+    private var type            : STHudType?
     private var text            : String?
     private var selfWidth       : CGFloat = 90
     private var selfHeight      : CGFloat = 90
     
     //enable: 是否允许用户交互, 默认允许
     init(text:String?,
-         type:BaseHUDType,
+         type:STHudType,
          delay:TimeInterval?,
          enable:Bool = true,
          offset:CGPoint = CGPoint(x: 0, y: -50)) {
@@ -70,11 +70,11 @@ public class BaseHUD: UIView {
         guard let type = type else { return }
         switch type {
         case .success:
-            addImageView(image: BaseHUDImage.imageOfSuccess)
+            addImageView(image: STHudImage.imageOfSuccess)
         case .error:
-            addImageView(image: BaseHUDImage.imageOfError)
+            addImageView(image: STHudImage.imageOfError)
         case .info:
-            addImageView(image: BaseHUDImage.imageOfInfo)
+            addImageView(image: STHudImage.imageOfInfo)
         case .loading:
             addActivityView()
         case .text:
@@ -164,29 +164,29 @@ public class BaseHUD: UIView {
     public static func showSuccess(text: String?,
                                    delay: TimeInterval? = nil,
                                    enable: Bool = true) {
-        BaseHUD(text: text, type: .success, delay: delay, enable: enable).show()
+        STHud(text: text, type: .success, delay: delay, enable: enable).show()
     }
     public static func showError(text: String?,
                                  delay: TimeInterval? = nil,
                                  enable: Bool = true) {
-        BaseHUD(text: text, type: .error, delay: delay, enable:enable).show()
+        STHud(text: text, type: .error, delay: delay, enable:enable).show()
     }
     public static func showLoading(enable: Bool = false) {
-        BaseHUD(text: nil, type:.loading, delay: 0, enable: enable).show()
+        STHud(text: nil, type:.loading, delay: 0, enable: enable).show()
     }
     public static func showLoading(text: String, enable: Bool = false) {
-        BaseHUD(text: text,type: .loading, delay: 0, enable: enable).show()
+        STHud(text: text,type: .loading, delay: 0, enable: enable).show()
     }
     public static func showInfo(text: String?, delay: TimeInterval? = nil, enable: Bool = true) {
-        BaseHUD(text: text, type: .info, delay: delay, enable: enable).show()
+        STHud(text: text, type: .info, delay: delay, enable: enable).show()
     }
     public static func showText(text:String?, delay: TimeInterval? = nil, enable: Bool = true) {
-        BaseHUD(text: text, type: .text, delay: delay, enable: enable).show()
+        STHud(text: text, type: .text, delay: delay, enable: enable).show()
     }
     public func show() {
         self.animate(hide: false) {
             if self.delay > 0 {
-                BaseHUD.asyncAfter(duration: self.delay, completion: {
+                STHud.asyncAfter(duration: self.delay, completion: {
                     self.hide()
                 })
             }
@@ -201,7 +201,7 @@ public class BaseHUD: UIView {
         })
     }
     public func hide(delay:TimeInterval = 1.5) {
-        BaseHUD.asyncAfter(duration: delay) {
+        STHud.asyncAfter(duration: delay) {
             self.hide()
         }
     }
@@ -223,7 +223,6 @@ public class BaseHUD: UIView {
         }
     }
     
-    
     //MARK: - 私有成员
     private lazy var screenView:UIView = {  //遮盖
         $0.frame = UIScreen.main.bounds
@@ -242,8 +241,8 @@ public class BaseHUD: UIView {
     }(UILabel())
 }
 
-//MARK: - BASEHUD + Extension
-extension BaseHUD {
+//MARK: - STHud + Extension
+extension STHud {
     
     fileprivate class func asyncAfter(duration:TimeInterval,
                                       completion:(() -> Void)?) {
@@ -271,8 +270,8 @@ extension UIView {
     }
 }
 
-//MARK: - BaseHUD + Image
-private class BaseHUDImage {
+//MARK: - STHud + Image
+private class STHudImage {
     
     fileprivate struct HUD {
         static var imageOfSuccess   : UIImage?
@@ -280,7 +279,7 @@ private class BaseHUDImage {
         static var imageOfInfo      : UIImage?
     }
     
-    fileprivate class func draw(_ type: BaseHUDType) {
+    fileprivate class func draw(_ type: STHudType) {
         let checkmarkShapePath = UIBezierPath()
         checkmarkShapePath.move(to: CGPoint(x: 36, y: 18))
         checkmarkShapePath.addArc(withCenter: CGPoint(x: 18, y: 18),
@@ -334,7 +333,7 @@ private class BaseHUDImage {
         UIGraphicsBeginImageContextWithOptions(CGSize(width: imageWidth_Height,
                                                       height: imageWidth_Height),
                                                false, 0)
-        BaseHUDImage.draw(.success)
+        STHudImage.draw(.success)
         HUD.imageOfSuccess = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
@@ -347,7 +346,7 @@ private class BaseHUDImage {
         UIGraphicsBeginImageContextWithOptions(CGSize(width: imageWidth_Height,
                                                       height: imageWidth_Height),
                                                false, 0)
-        BaseHUDImage.draw(.error)
+        STHudImage.draw(.error)
         HUD.imageOfError = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return HUD.imageOfError!
@@ -359,7 +358,7 @@ private class BaseHUDImage {
         UIGraphicsBeginImageContextWithOptions(CGSize(width: imageWidth_Height,
                                                       height: imageWidth_Height),
                                                false, 0)
-        BaseHUDImage.draw(.info)
+        STHudImage.draw(.info)
         HUD.imageOfInfo = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return HUD.imageOfInfo!
@@ -368,7 +367,7 @@ private class BaseHUDImage {
 
 //MARK: - String + Extension, 获取文本尺寸
 extension String {
-
+    
     fileprivate func textSizeWithFont(font: UIFont,
                                       constrainedToSize size: CGSize) -> CGSize {
         var textSize: CGSize!

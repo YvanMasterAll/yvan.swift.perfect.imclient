@@ -12,15 +12,16 @@ import Foundation
 class BaseViewController: UIViewController, StoryboardLoadable {
     
     //MARK: - 声明区域
-    open var backGestured: Bool = true      //测滑返回
+    open var backGestured       : Bool = true       //测滑返回
+    open var thirdKeyboard      : Bool = true       //三方键盘
     
     //MARK: - 导航栏状态
-    open var showNavbar: Bool = true            //显示导航栏
-    open var navBarTitle: String = ""           //导航栏标题
-    open var navBarLeftTitle: String?           //导航栏左侧按钮
-    open var navBarRightTitle: String?          //导航栏左侧按钮
-    open var navBarRightIcon: String?           //导航栏右侧图标
-    open var navBarNeedBack: Bool = false       //导航栏左侧返回按钮
+    open var showNavbar         : Bool = true       //显示导航栏
+    open var navBarTitle        : String = ""       //导航栏标题
+    open var navBarLeftTitle    : String?           //导航栏左侧按钮
+    open var navBarRightTitle   : String?           //导航栏左侧按钮
+    open var navBarRightIcon    : String?           //导航栏右侧图标
+    open var navBarNeedBack     : Bool = false      //导航栏左侧返回按钮
     
     //MARK: - 导航栏事件
     func navBarLeftClicked() { }

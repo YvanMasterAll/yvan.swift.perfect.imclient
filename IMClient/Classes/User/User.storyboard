@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--User SigninVC-->
+        <scene sceneID="Mdg-cc-1W4">
+            <objects>
+                <viewController storyboardIdentifier="UserSigninVC" id="gFc-eu-SVb" customClass="UserSigninVC" customModule="IMClient" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="RY1-7R-4xF">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="k4t-Ux-hxA"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MgP-oO-n3q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-321" y="-206"/>
+        </scene>
+        <!--User RegisterVC-->
+        <scene sceneID="5bq-tS-KM1">
+            <objects>
+                <viewController storyboardIdentifier="UserRegisterVC" id="vRN-tR-bsA" customClass="UserRegisterVC" customModule="IMClient" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2jt-ly-y6H">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8bB-OD-Fuu" customClass="STLabl" customModule="IMClient" customModuleProvider="target">
+                                <rect key="frame" x="147" y="140" width="81.5" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="输入手机号码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TMD-vT-IFr" customClass="STTxf" customModule="IMClient" customModuleProvider="target">
+                                <rect key="frame" x="40" y="224" width="295" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="输入账号密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="s2A-yo-Lys" customClass="STTxf" customModule="IMClient" customModuleProvider="target">
+                                <rect key="frame" x="40" y="294" width="295" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pOR-1h-z4k" customClass="STBtn" customModule="IMClient" customModuleProvider="target">
+                                <rect key="frame" x="171" y="364" width="33" height="32"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <state key="normal" title="注册">
+                                    <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="8bB-OD-Fuu" firstAttribute="centerX" secondItem="2jt-ly-y6H" secondAttribute="centerX" id="14Y-Ht-1h7"/>
+                            <constraint firstItem="UFv-nu-IIv" firstAttribute="trailing" secondItem="TMD-vT-IFr" secondAttribute="trailing" constant="40" id="785-eY-uW6"/>
+                            <constraint firstItem="TMD-vT-IFr" firstAttribute="leading" secondItem="UFv-nu-IIv" secondAttribute="leading" constant="40" id="89o-gQ-zcD"/>
+                            <constraint firstItem="pOR-1h-z4k" firstAttribute="centerX" secondItem="2jt-ly-y6H" secondAttribute="centerX" id="9vC-52-8vr"/>
+                            <constraint firstItem="s2A-yo-Lys" firstAttribute="top" secondItem="TMD-vT-IFr" secondAttribute="bottom" constant="40" id="A0f-hb-iZe"/>
+                            <constraint firstItem="TMD-vT-IFr" firstAttribute="top" secondItem="8bB-OD-Fuu" secondAttribute="bottom" constant="60" id="AbO-lM-vSh"/>
+                            <constraint firstItem="8bB-OD-Fuu" firstAttribute="top" secondItem="UFv-nu-IIv" secondAttribute="top" constant="120" id="GOp-ba-6GW"/>
+                            <constraint firstItem="pOR-1h-z4k" firstAttribute="top" secondItem="s2A-yo-Lys" secondAttribute="bottom" constant="40" id="Jvv-SB-lbF"/>
+                            <constraint firstItem="TMD-vT-IFr" firstAttribute="centerX" secondItem="2jt-ly-y6H" secondAttribute="centerX" id="MEb-cM-vgK"/>
+                            <constraint firstItem="UFv-nu-IIv" firstAttribute="trailing" secondItem="s2A-yo-Lys" secondAttribute="trailing" constant="40" id="ptW-kM-zgt"/>
+                            <constraint firstItem="s2A-yo-Lys" firstAttribute="leading" secondItem="UFv-nu-IIv" secondAttribute="leading" constant="40" id="rEW-PV-sEV"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="UFv-nu-IIv"/>
+                    </view>
+                    <connections>
+                        <outlet property="btn_register" destination="pOR-1h-z4k" id="Y86-Zx-Smu"/>
+                        <outlet property="tf_password" destination="s2A-yo-Lys" id="mC4-9K-8wv"/>
+                        <outlet property="tf_phone" destination="TMD-vT-IFr" id="klk-Y3-cEP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XcX-vJ-apZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="552.79999999999995" y="-206.44677661169416"/>
+        </scene>
+    </scenes>
+</document>
