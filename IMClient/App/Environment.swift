@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ObjectMapper
 
 struct Environment {
 
@@ -15,6 +16,9 @@ struct Environment {
         if let dict = BaseUtil.fileToDict(filePath: baseConfig) {
             if let url = dict["baseURL"] as? String {
                 baseURL_i = url
+            }
+            if let url = dict["baseURL_socket"] as? String {
+                baseURL_socket = url
             }
         }
     }
@@ -36,20 +40,17 @@ struct Environment {
     }
     
     //MARK: - 用户信息
-    static var nickname: String? {
+    static var user: User? {
         get {
-            return self.userDefaults.value(forKey: UserDefaultsKeys.nickname.rawValue) as! String?
+            if let data = self.userDefaults.value(forKey: UserDefaultsKeys.user.rawValue) as? [String: Any] {
+                return User.init(map: Map(mappingType: .fromJSON, JSON: data))
+            }
+            return nil
         }
         set {
-            self.userDefaults.setValue(newValue, forKey: UserDefaultsKeys.nickname.rawValue)
-        }
-    }
-    static var avatar: String? {
-        get {
-            return self.userDefaults.value(forKey: UserDefaultsKeys.avatar.rawValue) as! String?
-        }
-        set {
-            self.userDefaults.setValue(newValue, forKey: UserDefaultsKeys.avatar.rawValue)
+            if let data = newValue?.toJSON() {
+                self.userDefaults.setValue(data, forKey: UserDefaultsKeys.user.rawValue)
+            }
         }
     }
     
@@ -60,8 +61,7 @@ struct Environment {
     
     private enum UserDefaultsKeys: String {
         case token      =   "user_auth_token"
-        case nickname   =   "user_nickname"
-        case avatar     =   "user_avatar"
+        case user       =   "user"
     }
     
     //MARK: - 私有成员

@@ -9,7 +9,7 @@
 import Foundation
 import ObjectMapper
 
-protocol BaseModel { }
+protocol BaseModel: Mappable { }
 
 extension BaseModel {
     

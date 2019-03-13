@@ -12,12 +12,7 @@ struct ServiceUtil {
     
     //MARK: - 保存用户信息
     static func saveUser(_ user: User) {
-        if let avatar = user.avatar {
-            Environment.avatar = avatar
-        }
-        if let nickname = user.nickname {
-            Environment.nickname = nickname
-        }
+        Environment.user = user
     }
     
     //TODO: - 保存用户详情

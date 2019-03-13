@@ -46,4 +46,9 @@ extension Date {
         let comB = calendar.dateComponents([.year, .month, .day], from: dateB)
         return comA.year == comB.year && comA.month == comB.month && comA.day == comB.day
     }
+    
+    //MARK: - 时间标识
+    static func timeid() -> Double {
+        return NSDate().timeIntervalSince1970*1000
+    }
 }

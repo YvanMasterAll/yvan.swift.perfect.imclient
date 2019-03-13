@@ -75,39 +75,39 @@ public enum Whether: BaseType {     //是否
 }
 public enum MessageType: BaseType { //消息类型
     
-    case normal
+    case text
     
     public var value: String {
         switch self {
-        case .normal            : return "普通消息"
+        case .text               : return "文本"
         }
     }
     
     init?(_ value: String) {
         switch value {
-        case "普通消息", "normal"  : self = .normal
+        case "文本", "text"       : self = .text
         default                  : return nil
         }
     }
 }
 public enum DialogType: BaseType {  //会话类型
     
-    case normal
+    case single
     
     public var value: String {
         switch self {
-        case .normal             : return "普通会话"
+        case .single              : return "单聊"
         }
     }
     
     init?(_ value: String) {
         switch value {
-        case "普通会话", "normal"  : self = .normal
+        case "单聊", "single"      : self = .single
         default                   : return nil
         }
     }
 }
-public enum SocketCmdType {         //命令类型, WebSocket
+public enum SocketCmdType: BaseType {//命令类型, WebSocket
     
     case register, chat
     

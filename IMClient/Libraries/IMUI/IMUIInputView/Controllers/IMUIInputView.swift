@@ -92,6 +92,10 @@ open class IMUIInputView: IMUICustomInputView {
   
   override public init(frame: CGRect) {
     super.init(frame: frame)
+    
+    self.setupInputViewData()
+    self.inputViewDelegate = self
+    self.dataSource = self
   }
   
   open override func awakeFromNib() {

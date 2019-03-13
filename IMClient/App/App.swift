@@ -18,6 +18,7 @@ let baseConfig = "app.json"
 
 //MARK: - 请求地址
 var baseURL_i = "http://localhost:8181"
+var baseURL_socket = "ws://localhost:8181/api/v1/chat"
 
 //MARK: - 应用状态
 public enum BaseStatusType {
@@ -25,6 +26,6 @@ public enum BaseStatusType {
     case signout        //登出状态
     case signin         //登录状态
     case userinfo       //更新用户信息
-    case userinfo_part  //局部更新用户信息, 如关注数, 不请求网络
+    case userinfo_local //更新用户信息, 本地更新, 如关注数
 }
 let BaseStatus = PublishSubject<BaseStatusType>()

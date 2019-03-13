@@ -72,17 +72,32 @@ open class IMUICustomInputView: UIView {
   
   override public init(frame: CGRect) {
     super.init(frame: frame)
+//    let bundle = Bundle.imuiInputViewBundle()
+//    view = bundle.loadNibNamed("IMUICustomInputView", owner: self, options: nil)?.first as? UIView
+//
+//    self.addSubview(view)
+//    view.frame = self.bounds
+//
+//    self.inputTextView.textContainer.lineBreakMode = .byWordWrapping
+//    self.inputTextView.font = UIFont.systemFont(ofSize: 14)
+//    self.inputTextView.textColor = inputTextViewTextColor
+//    self.inputTextView.layoutManager.allowsNonContiguousLayout = false
+//    inputTextView.delegate = self
     let bundle = Bundle.imuiInputViewBundle()
-    view = bundle.loadNibNamed("IMUICustomInputView", owner: self, options: nil)?.first as? UIView
+    view = bundle.loadNibNamed("IMUICustomInputView", owner: self, options: nil)?.first as! UIView
     
     self.addSubview(view)
     view.frame = self.bounds
     
-    self.inputTextView.textContainer.lineBreakMode = .byWordWrapping
-    self.inputTextView.font = UIFont.systemFont(ofSize: 14)
-    self.inputTextView.textColor = inputTextViewTextColor
-    self.inputTextView.layoutManager.allowsNonContiguousLayout = false
+    inputTextView.textContainer.lineFragmentPadding = 0
+    inputTextView.textContainerInset = .zero
+    
+    inputTextView.textContainer.lineBreakMode = .byWordWrapping
     inputTextView.delegate = self
+    
+    self.bottomInputBarItemListView.position = .bottom
+    self.leftInputBarItemListView.position = .left
+    self.rightInputBarItemListView.position = .right
   }
   
   open override func awakeFromNib() {

@@ -8,18 +8,37 @@
 
 import UIKit
 
-class ChatVC: BaseViewController {
-
+class ChatVC: BaseChatViewController {
+    
+    //MARK: - 声明区域
+    open var dialogtype : DialogType!
+    open var user       : User!
+    open var target     : User!
+    
+    override func getTarget() -> User {
+        return target
+    }
+    
+    override func getDialogType() -> DialogType {
+        return dialogtype
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //yTest
+        dialogtype = DialogType.single
+//        user = User()
+//        user.id = 2
+//        user.nickname = "yi001"
+//        user.avatar = ""
+        target = User()
+        target?.id = 2
+        target?.nickname = "yi001"
+        target?.avatar = ""
+        
         setupUI()
     }
-    
-    //MARK: - 私有成员
-    fileprivate lazy var chatView: IMUIMessageCollectionView = { //聊天视图
-        return IMUIMessageCollectionView()
-    }()
 }
 
 extension ChatVC {

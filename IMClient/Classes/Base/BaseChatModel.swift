@@ -66,7 +66,8 @@ class BaseChatModel: IMUIMessageModel {
     convenience init(msgId: String,
                      text: String,
                      fromUser: ChatUser,
-                     isOutGoing: Bool) {
+                     isOutGoing: Bool,
+                     status: IMUIMessageStatus) {
         let layout = ChatCellLayout(isOutGoingMessage: isOutGoing,
                                     isNeedShowTime: false,
                                     bubbleContentSize: BaseChatModel
@@ -75,7 +76,7 @@ class BaseChatModel: IMUIMessageModel {
                                     timeLabelContentSize: CGSize.zero,
                                     type: ChatMessageType.text)
         self.init(msgId: msgId,
-                  messageStatus: .success,
+                  messageStatus: status,
                   fromUser: fromUser,
                   isOutGoing: isOutGoing,
                   date: Date(),
@@ -83,7 +84,7 @@ class BaseChatModel: IMUIMessageModel {
                   text: text,
                   mediaPath: "",
                   layout:  layout,
-                  duration: nil)
+                  duration: 10)
     }
     
     //MARK: - 音频消息
