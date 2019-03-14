@@ -109,12 +109,14 @@ public enum DialogType: BaseType {  //会话类型
 }
 public enum SocketCmdType: BaseType {//命令类型, WebSocket
     
-    case register, chat
+    case register, chat, receive, list
     
     public var value: String {
         switch self {
-        case .register       : return "注册"
-        case .chat           : return "聊天"
+        case .register          : return "注册"
+        case .chat              : return "聊天"
+        case .receive           : return "接收"
+        case .list               : return "列表"
         }
     }
     
@@ -122,6 +124,8 @@ public enum SocketCmdType: BaseType {//命令类型, WebSocket
         switch value {
         case "注册", "register"   : self = .register
         case "聊天", "chat"       : self = .chat
+        case "列表", "list"       : self = .list
+        case "接收", "receive"    : self = .receive
         default                   : return nil
         }
     }

@@ -9,12 +9,13 @@
 import Foundation
 import ObjectMapper
 
-public struct BaseResult: Mappable {
+public struct BaseResult: BaseModel {
     
     var code        : Int!
     var result      : ResultType!
+    var cmd         : SocketCmdType?
     var msg         : String?
-    var dataArray   : [String: Any]?
+    var dataArray   : [String]?
     var dataDict    : [String: Any]?
     var dataDicts   : [[String: Any]]?
     
@@ -30,6 +31,7 @@ public struct BaseResult: Mappable {
         dataArray   <- map["dataArray"]
         dataDict    <- map["dataDict"]
         dataDicts   <- map["dataDicts"]
+        cmd         <- (map["cmd"], transfromOfType())
         result      = ResultType(code: ResultCode(code) == nil ? ResultCode.unknown:ResultCode(code)!,
                                  msg: msg)
     }
@@ -61,6 +63,7 @@ enum ResultCode: Int {
     case userExists         = 411
     case userNotExists      = 412
     case signinFailure      = 413
+    case dialogNotExists    = 421
     
     //MARK: - 500
     case serverError        = 500
@@ -82,6 +85,7 @@ enum ResultCode: Int {
         case 411                : self = .userExists
         case 412                : self = .userNotExists
         case 413                : self = .signinFailure
+        case 421                : self = .dialogNotExists
         //MARK: - 500
         case 500                : self = .serverError
         //MARK: - 900
@@ -100,6 +104,7 @@ enum ResultCode: Int {
         case .userExists:       return "用户已存在"
         case .userNotExists:    return "用户不存在"
         case .signinFailure:    return "登陆失败"
+        case .dialogNotExists:  return "会话不存在"
         //MARK: - 500
         case .serverError:      return "服务器异常"
         //MARK: - 900

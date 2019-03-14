@@ -38,6 +38,10 @@ class BaseChatViewController: BaseViewController {
         return .single
     }
     
+    func getDialogId() -> String? {
+        return nil
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -51,20 +55,23 @@ class BaseChatViewController: BaseViewController {
     }
     
     //MARK: - 私有成员
-    fileprivate var socket      : WebSocket!
-    fileprivate var url         : String = baseURL_socket
-    fileprivate var connected   : Bool   = false
-    fileprivate var registered  : Bool   = false
-    fileprivate lazy var user   : User = {
+    fileprivate var socket      : WebSocket!                //通讯对象
+    fileprivate var url         : String = baseURL_socket   //通讯地址
+    fileprivate var connected   : Bool   = false            //通讯连接
+    fileprivate var registered  : Bool   = false            //通讯注册
+    fileprivate var pageIndex   : Int    = 1                //页面索引
+    fileprivate var pageLoading : Bool   = false            //页面加载
+    fileprivate var pageEnded   : Bool   = false            //页面结束
+    fileprivate lazy var user   : User = {                  //用户对象
         return getUser()
     }()
-    fileprivate lazy var target : User = {
+    fileprivate lazy var target : User = {                  //目标对象
         return getTarget()
     }()
-    fileprivate lazy var dialogtype : DialogType = {
+    fileprivate lazy var dialogtype : DialogType = {        //会话类型
         return getDialogType()
     }()
-    fileprivate var dialogid    : String?
+    fileprivate var dialogid    : String?                   //会话标识
 }
 
 //MARK: - 初始化
@@ -86,12 +93,41 @@ extension BaseChatViewController {
         }
         chatView.delegate = self
         inputBar.delegate = self
+        //Refresh Header
+        self.chatView.messageCollectionView.configRefreshHeader(with: BaseRefreshHeader(), container: self) { [weak self] () -> Void in
+            self?.refreshHandler()
+        }
+        //Refresh When Loaded
+        self.chatView.messageCollectionView.switchRefreshHeader(to: .refreshing)
     }
     
     fileprivate func baseSetupSocket() {
+        dialogid = getDialogId()
         socket = WebSocket(url: URL(string: url)!)
         socket.delegate = self
         socket.connect()
+    }
+}
+
+//MARK: - Refresh Handler
+extension BaseChatViewController {
+    
+    fileprivate func refreshHandler() {
+        guard !self.pageEnded else {
+            self.chatView.messageCollectionView.switchRefreshHeader(to: .removed)
+            return
+        }
+        guard !self.pageLoading, connected else { return }
+        self.pageLoading = true
+        self.sendMessage(pageindex: pageIndex)
+    }
+    
+    fileprivate func endRefresh() {
+        if pageLoading {
+            pageEnded = true
+            pageLoading = false
+            chatView.messageCollectionView.switchRefreshHeader(to: .removed)
+        }
     }
 }
 
@@ -114,25 +150,36 @@ extension BaseChatViewController: WebSocketDelegate {
     }
     
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
-        if let data = Mapper<BaseResult>().map(JSONString: text),
-            data.result.code.valid(),
-            let dataDict = data.dataDict,
-            let message = ChatMessage(map: Map(mappingType: .fromJSON, JSON: dataDict)) {
-            if let cmd = message.cmd {
-                switch cmd {            //命令判断
-                case .register:
-                    registered = true
-                case .chat:             //发送消息
-                    if user.id! == message.sender! {
-                        dialogid = message.dialogid
-                        self.appendMessage(user: user,
-                                           message: message,
-                                           issender: true,
-                                           status: .success,
-                                           update: true)
-                    }
+        guard let data = Mapper<BaseResult>().map(JSONString: text),
+        let cmd = data.cmd else { return }
+        let valid = data.result.code.valid()
+        if !valid {                     //异常处理
+            switch data.result.code {
+            case .dialogNotExists:      //消息列表获取异常, 会话不存在
+                endRefresh()
+            default:                    //其它异常, 暂不处理
+                endRefresh()
+            }
+            return
+        }
+        switch cmd {                    //命令判断
+        case .register:                 //通讯注册
+            registered = true
+        case .chat:                     //发送结果
+            if let dataDict = data.dataDict,
+                let message = ChatMessage(map: Map(mappingType: .fromJSON, JSON: dataDict)) {
+                if user.id! == message.sender! {
+                    dialogid = message.dialogid
+                    self.appendMessage(user: user,
+                                       message: message,
+                                       issender: true,
+                                       status: .success,
+                                       update: true)
                 }
-            } else {                    //接收消息
+            }
+        case .receive:                  //消息接收
+            if let dataDict = data.dataDict,
+                let message = ChatMessage(map: Map(mappingType: .fromJSON, JSON: dataDict)) {
                 switch dialogtype {
                 case .single:
                     if user.id! == message.receiver {
@@ -146,6 +193,35 @@ extension BaseChatViewController: WebSocketDelegate {
                     }
                 }
             }
+        case .list:                     //消息列表
+            if let dataDicts = data.dataDicts, pageLoading {
+                let messages: [ChatMessage] = [ChatMessage](JSONArray: dataDicts)
+                if messages.count > 0 {
+                    switch dialogtype {
+                    case .single:
+                        messages.forEach { [unowned self] data in
+                            var message = data
+                            message._id = "\(Date.timeid())"
+                            if self.dialogid == nil {
+                                self.dialogid = message.dialogid
+                            }
+                            if self.user.id! == message.sender! {
+                                self.appendMessage(user: self.user, message: message, issender: true, status: .success)
+                            }
+                            if self.user.id! == message.receiver! {
+                                self.appendMessage(user: self.target, message: message, issender: false, status: .success)
+                            }
+                        }
+                        chatView.messageCollectionView.switchRefreshHeader(to: .normal(.success, 0.5))
+                    }
+                } else {
+                    endRefresh()
+                }
+                pageIndex += 1
+                pageLoading = false     //页面状态
+            } else {
+                endRefresh()
+            }
         }
     }
     
@@ -154,12 +230,23 @@ extension BaseChatViewController: WebSocketDelegate {
     }
 }
 
-
-//MARK: - IMUIInputViewDelegate + IMUICustomInputViewDelegate
-extension BaseChatViewController: IMUIInputViewDelegate, IMUIMessageMessageCollectionViewDelegate {
+//MARK: - 消息业务
+extension BaseChatViewController {
     
-    //MARK: - 文本消息
-    func sendTextMessage(_ messageText: String) {
+    func sendMessage(pageindex: Int) {
+        var message = ChatMessage()
+        message.cmd = .list
+        message.sender = user.id
+        message.receiver = target.id
+        message.dialogtype = dialogtype
+        message.dialogid = dialogid
+        message.pageindex = pageIndex
+        if connected, let data = message.toJSONString() {
+            socket.write(string: data)
+        }
+    }
+    
+    func sendMessage(text: String) {
         switch dialogtype {
         case .single:
             var message = ChatMessage()
@@ -170,17 +257,13 @@ extension BaseChatViewController: IMUIInputViewDelegate, IMUIMessageMessageColle
             message.dialogtype = .single
             message._id = "\(Date.timeid())"
             message.type = .text
-            message.body = messageText
+            message.body = text
             if connected, let data = message.toJSONString() {
                 socket.write(string: data)
             }
             self.appendMessage(user: user, message: message, issender: true, status: .sending)
         }
     }
-}
-
-//MARK: - 消息业务
-extension BaseChatViewController {
     
     func appendMessage(user: User,
                        message: ChatMessage,
@@ -201,6 +284,7 @@ extension BaseChatViewController {
                                      text: body,
                                      fromUser: cuser,
                                      isOutGoing: issender,
+                                     date: message.createtime ?? Date(),
                                      status: status)
         }
         if update {
@@ -211,3 +295,11 @@ extension BaseChatViewController {
     }
 }
 
+//MARK: - IMUIInputViewDelegate + IMUICustomInputViewDelegate
+extension BaseChatViewController: IMUIInputViewDelegate, IMUIMessageMessageCollectionViewDelegate {
+    
+    //MARK: - 文本消息
+    func sendTextMessage(_ messageText: String) {
+        self.sendMessage(text: messageText)
+    }
+}

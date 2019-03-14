@@ -67,6 +67,7 @@ class BaseChatModel: IMUIMessageModel {
                      text: String,
                      fromUser: ChatUser,
                      isOutGoing: Bool,
+                     date: Date,
                      status: IMUIMessageStatus) {
         let layout = ChatCellLayout(isOutGoingMessage: isOutGoing,
                                     isNeedShowTime: false,

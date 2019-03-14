@@ -23,6 +23,7 @@ public struct ChatMessage: BaseModel {
     var createtime  : Date?
     var updatetime  : Date?
     var status      : Status?
+    var pageindex   : Int?              //页面索引, 本地使用
     
     public init(){}
     
@@ -43,5 +44,6 @@ public struct ChatMessage: BaseModel {
         createtime  <- (map["createtime"], transfromOfDate())
         updatetime  <- (map["updatetime"], transfromOfDate())
         status      <- (map["status"], transfromOfType())
+        pageindex   <- map["pageindex"]
     }
 }

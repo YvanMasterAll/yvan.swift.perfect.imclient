@@ -202,10 +202,12 @@ extension STPlace {
 extension STPlace {
     
     fileprivate func image(name: String) -> UIImage? {
-        let bundle = Bundle(path: "\(self)")
-        let imagePath = bundle?.path(forResource: "images/\(name)", ofType: "png")
-        if let path = imagePath {
-            return UIImage(contentsOfFile: path)
+        if let bundlePath = Bundle.main.path(forResource: "\(self)", ofType: "bundle"),
+            let bundle = Bundle(path: bundlePath) {
+            let imagePath = bundle.path(forResource: "images/\(name)", ofType: "png")
+            if let path = imagePath {
+                return UIImage(contentsOfFile: path)
+            }
         }
         return nil
     }

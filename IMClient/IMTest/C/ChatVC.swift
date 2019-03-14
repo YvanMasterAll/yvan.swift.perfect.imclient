@@ -12,6 +12,7 @@ class ChatVC: BaseChatViewController {
     
     //MARK: - 声明区域
     open var dialogtype : DialogType!
+    open var dialogid   : String?
     open var user       : User!
     open var target     : User!
     
@@ -21,6 +22,10 @@ class ChatVC: BaseChatViewController {
     
     override func getDialogType() -> DialogType {
         return dialogtype
+    }
+    
+    override func getDialogId() -> String? {
+        return dialogid
     }
     
     override func viewDidLoad() {
