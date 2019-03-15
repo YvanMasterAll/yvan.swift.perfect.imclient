@@ -147,11 +147,12 @@ extension BaseChatViewController: WebSocketDelegate {
     
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
         self.connected = false
+        endRefresh()
     }
     
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
         guard let data = Mapper<BaseResult>().map(JSONString: text),
-        let cmd = data.cmd else { return }
+            let cmd = data.cmd else { return }
         let valid = data.result.code.valid()
         if !valid {                     //异常处理
             switch data.result.code {

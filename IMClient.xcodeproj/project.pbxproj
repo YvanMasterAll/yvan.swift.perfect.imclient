@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0A277B9F0D6BC7ABFB3DBA4D /* Pods_IMClientTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E5AB90DCD0E52D39FC9FBBC /* Pods_IMClientTests.framework */; };
 		0FC2092DD8D4E5D726A16987 /* Pods_IMClientUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C7F26B320B2A2CE9E5B9549 /* Pods_IMClientUITests.framework */; };
+		C60EECB8223BC21100FA6BF7 /* ViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60EECB7223BC21100FA6BF7 /* ViewController+Extension.swift */; };
 		C629669C2232195400ADBEE6 /* STHud.swift in Sources */ = {isa = PBXBuildFile; fileRef = C629669B2232195400ADBEE6 /* STHud.swift */; };
 		C629669E22322AEF00ADBEE6 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = C629669D22322AEF00ADBEE6 /* Service.swift */; };
 		C62966A022322D7900ADBEE6 /* Moya+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C629669F22322D7900ADBEE6 /* Moya+Extension.swift */; };
@@ -172,6 +173,7 @@
 		9C7F26B320B2A2CE9E5B9549 /* Pods_IMClientUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IMClientUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9F1E1EF0507BA243E4CADF5 /* Pods-IMClientTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IMClientTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-IMClientTests/Pods-IMClientTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C08F8E7EAF700223053CAFB0 /* Pods-IMClientUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IMClientUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-IMClientUITests/Pods-IMClientUITests.release.xcconfig"; sourceTree = "<group>"; };
+		C60EECB7223BC21100FA6BF7 /* ViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Extension.swift"; sourceTree = "<group>"; };
 		C629669B2232195400ADBEE6 /* STHud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STHud.swift; sourceTree = "<group>"; };
 		C629669D22322AEF00ADBEE6 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		C629669F22322D7900ADBEE6 /* Moya+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Moya+Extension.swift"; sourceTree = "<group>"; };
@@ -356,6 +358,27 @@
 				C08F8E7EAF700223053CAFB0 /* Pods-IMClientUITests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		C60EECB9223BC23900FA6BF7 /* V */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = V;
+			sourceTree = "<group>";
+		};
+		C60EECBA223BC24500FA6BF7 /* V */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = V;
+			sourceTree = "<group>";
+		};
+		C60EECBB223BC25200FA6BF7 /* VM */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = VM;
 			sourceTree = "<group>";
 		};
 		C629669A2232193300ADBEE6 /* Components */ = {
@@ -621,7 +644,7 @@
 			isa = PBXGroup;
 			children = (
 				C62D2DC922324A8E00A3A8B3 /* VM */,
-				C62D2DC822324A8800A3A8B3 /* V */,
+				C60EECB9223BC23900FA6BF7 /* V */,
 				C62D2DC722324A8300A3A8B3 /* C */,
 				C62D2DCA22324ABC00A3A8B3 /* User.storyboard */,
 			);
@@ -635,13 +658,6 @@
 				C62D2DCE22324B8F00A3A8B3 /* UserRegisterVC.swift */,
 			);
 			path = C;
-			sourceTree = "<group>";
-		};
-		C62D2DC822324A8800A3A8B3 /* V */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = V;
 			sourceTree = "<group>";
 		};
 		C62D2DC922324A8E00A3A8B3 /* VM */ = {
@@ -681,7 +697,7 @@
 				C6344E8C2230FD6F0069D67E /* Extensions */,
 				C629669A2232193300ADBEE6 /* Components */,
 				C62B7C1A22350E590048FCBA /* Libraries */,
-				C6344E862230F8210069D67E /* Classes */,
+				C6344E862230F8210069D67E /* Modules */,
 				C6344E9E223117880069D67E /* Network */,
 				C6344E852230F5D90069D67E /* IMTest */,
 				C6344E822230F32B0069D67E /* Others */,
@@ -728,21 +744,21 @@
 		C6344E852230F5D90069D67E /* IMTest */ = {
 			isa = PBXGroup;
 			children = (
-				C6344E96223107390069D67E /* VM */,
-				C6344E972231073F0069D67E /* V */,
+				C60EECBB223BC25200FA6BF7 /* VM */,
+				C60EECBA223BC24500FA6BF7 /* V */,
 				C6344E95223107330069D67E /* C */,
 				C6344E582230EECA0069D67E /* Chat.storyboard */,
 			);
 			path = IMTest;
 			sourceTree = "<group>";
 		};
-		C6344E862230F8210069D67E /* Classes */ = {
+		C6344E862230F8210069D67E /* Modules */ = {
 			isa = PBXGroup;
 			children = (
 				C62D2DC622324A7B00A3A8B3 /* User */,
 				C6344EAD223135860069D67E /* Base */,
 			);
-			path = Classes;
+			path = Modules;
 			sourceTree = "<group>";
 		};
 		C6344E872230F8560069D67E /* App */ = {
@@ -769,6 +785,7 @@
 				C62D2DD82232707900A3A8B3 /* Button+Extension.swift */,
 				C62D7BE12233BD4A00636990 /* Reactive+Extension.swift */,
 				C63740C622375C5D002081ED /* Label+Extension.swift */,
+				C60EECB7223BC21100FA6BF7 /* ViewController+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -779,20 +796,6 @@
 				C6344E98223107A30069D67E /* ChatVC.swift */,
 			);
 			path = C;
-			sourceTree = "<group>";
-		};
-		C6344E96223107390069D67E /* VM */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = VM;
-			sourceTree = "<group>";
-		};
-		C6344E972231073F0069D67E /* V */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = V;
 			sourceTree = "<group>";
 		};
 		C6344E9E223117880069D67E /* Network */ = {
@@ -1300,6 +1303,7 @@
 				C62B7C9D22350E590048FCBA /* IMUITextView.swift in Sources */,
 				C62B7C9F22350E590048FCBA /* IMUIVoiceMessageContentView.swift in Sources */,
 				C62B7CAA22350E590048FCBA /* IMUIFeatureIconModel.swift in Sources */,
+				C60EECB8223BC21100FA6BF7 /* ViewController+Extension.swift in Sources */,
 				C62B7CC322350E590048FCBA /* IMUIPermissionDenyedView.swift in Sources */,
 				C6344EA922312A9B0069D67E /* BaseResult.swift in Sources */,
 				C6344EB1223136290069D67E /* Environment.swift in Sources */,
