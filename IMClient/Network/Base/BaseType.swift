@@ -9,11 +9,13 @@
 import Foundation
 
 //MARK: - 枚举类型
+
 protocol BaseType {
     
     var value: String { get }
     init?(_ value: String)
 }
+
 public enum Gender: BaseType {      //性别
     
     case male, female
@@ -33,6 +35,7 @@ public enum Gender: BaseType {      //性别
         }
     }
 }
+
 public enum Status: BaseType {      //状态
     
     case normal, delete, unread
@@ -54,6 +57,7 @@ public enum Status: BaseType {      //状态
         }
     }
 }
+
 public enum Whether: BaseType {     //是否
     
     case y, n
@@ -73,6 +77,7 @@ public enum Whether: BaseType {     //是否
         }
     }
 }
+
 public enum MessageType: BaseType { //消息类型
     
     case text
@@ -90,6 +95,7 @@ public enum MessageType: BaseType { //消息类型
         }
     }
 }
+
 public enum DialogType: BaseType {  //会话类型
     
     case single
@@ -107,6 +113,7 @@ public enum DialogType: BaseType {  //会话类型
         }
     }
 }
+
 public enum SocketCmdType: BaseType {//命令类型, WebSocket
     
     case register, chat, receive, list

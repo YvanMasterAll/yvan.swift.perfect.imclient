@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //MARK: - Test
     func setupTest() {
         //let vc = ChatVC.storyboard(from: "Chat")
-        let vc = ChatVC.storyboard(from: "Chat")
+        let vc = ChatFindVC.storyboard(from: "Chat")
         let nc = BaseNavigationController(rootViewController: vc)
         self.window?.rootViewController = nc
         self.window?.makeKeyAndVisible()

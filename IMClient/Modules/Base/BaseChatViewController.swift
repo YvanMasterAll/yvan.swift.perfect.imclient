@@ -97,8 +97,6 @@ extension BaseChatViewController {
         self.chatView.messageCollectionView.configRefreshHeader(with: BaseRefreshHeader(), container: self) { [weak self] () -> Void in
             self?.refreshHandler()
         }
-        //Refresh When Loaded
-        self.chatView.messageCollectionView.switchRefreshHeader(to: .refreshing)
     }
     
     fileprivate func baseSetupSocket() {
@@ -114,7 +112,7 @@ extension BaseChatViewController {
     
     fileprivate func refreshHandler() {
         guard !self.pageEnded else {
-            self.chatView.messageCollectionView.switchRefreshHeader(to: .removed)
+            refreshNoMore()
             return
         }
         guard !self.pageLoading, connected else { return }
@@ -122,12 +120,17 @@ extension BaseChatViewController {
         self.sendMessage(pageindex: pageIndex)
     }
     
-    fileprivate func endRefresh() {
+    fileprivate func refreshEnded() {
         if pageLoading {
             pageEnded = true
             pageLoading = false
-            chatView.messageCollectionView.switchRefreshHeader(to: .removed)
+            refreshNoMore()
         }
+    }
+    
+    fileprivate func refreshNoMore() {
+        STHud.showText(text: "没有更多数据")
+        self.chatView.messageCollectionView.switchRefreshHeader(to: .normal(.none, 0.5))
     }
 }
 
@@ -147,7 +150,7 @@ extension BaseChatViewController: WebSocketDelegate {
     
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
         self.connected = false
-        endRefresh()
+        refreshEnded()
     }
     
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
@@ -157,14 +160,16 @@ extension BaseChatViewController: WebSocketDelegate {
         if !valid {                     //异常处理
             switch data.result.code {
             case .dialogNotExists:      //消息列表获取异常, 会话不存在
-                endRefresh()
+                refreshEnded()
             default:                    //其它异常, 暂不处理
-                endRefresh()
+                refreshEnded()
             }
             return
         }
         switch cmd {                    //命令判断
         case .register:                 //通讯注册
+            //Refresh When Registered
+            refreshHandler()
             registered = true
         case .chat:                     //发送结果
             if let dataDict = data.dataDict,
@@ -175,7 +180,7 @@ extension BaseChatViewController: WebSocketDelegate {
                                        message: message,
                                        issender: true,
                                        status: .success,
-                                       update: true)
+                                       type_append: .update)
                 }
             }
         case .receive:                  //消息接收
@@ -207,21 +212,21 @@ extension BaseChatViewController: WebSocketDelegate {
                                 self.dialogid = message.dialogid
                             }
                             if self.user.id! == message.sender! {
-                                self.appendMessage(user: self.user, message: message, issender: true, status: .success)
+                                self.appendMessage(user: self.user, message: message, issender: true, status: .success, type_append: .insert)
                             }
                             if self.user.id! == message.receiver! {
-                                self.appendMessage(user: self.target, message: message, issender: false, status: .success)
+                                self.appendMessage(user: self.target, message: message, issender: false, status: .success, type_append: .insert)
                             }
                         }
                         chatView.messageCollectionView.switchRefreshHeader(to: .normal(.success, 0.5))
                     }
                 } else {
-                    endRefresh()
+                    refreshEnded()
                 }
                 pageIndex += 1
                 pageLoading = false     //页面状态
             } else {
-                endRefresh()
+                refreshEnded()
             }
         }
     }
@@ -270,7 +275,7 @@ extension BaseChatViewController {
                        message: ChatMessage,
                        issender: Bool,
                        status: IMUIMessageStatus,
-                       update: Bool = false) {
+                       type_append: MessageAppendType = .append) {
         guard let id = user.id,
             let name = user.nickname,
             let avatar = user.avatar,
@@ -288,10 +293,13 @@ extension BaseChatViewController {
                                      date: message.createtime ?? Date(),
                                      status: status)
         }
-        if update {
-            chatView.updateMessage(with: cmessage)
-        } else {
+        switch type_append {
+        case .append:
             chatView.appendMessage(with: cmessage)
+        case .update:
+            chatView.updateMessage(with: cmessage)
+        case .insert:
+            chatView.insertMessage(with: cmessage)
         }
     }
 }
@@ -303,4 +311,10 @@ extension BaseChatViewController: IMUIInputViewDelegate, IMUIMessageMessageColle
     func sendTextMessage(_ messageText: String) {
         self.sendMessage(text: messageText)
     }
+}
+
+//MARK: - 添加类型, 添加, 更新, 插入
+enum MessageAppendType {
+    
+    case append, update, insert
 }

@@ -15,7 +15,7 @@ extension Date {
     /// - parameter date: 日期
     /// - parameter dateFormat: 格式字符串
     static func toString(date: Date = Date(), dateFormat: String = "yyyy-MM-dd HH:mm:ss") -> String {
-        let timeZone = TimeZone.init(identifier: "UTC")
+        let timeZone = NSTimeZone(abbreviation: "EST")! as TimeZone
         let formatter = DateFormatter()
         formatter.timeZone = timeZone
         formatter.locale = Locale.init(identifier: "zh_CN")
@@ -28,7 +28,7 @@ extension Date {
     /// - parameter dateString: 日期字符串
     /// - parameter dateFormat: 格式字符串
     static func toDate(dateString: String, dateFormat: String = "yyyy-MM-dd HH:mm:ss") -> Date {
-        let timeZone = TimeZone.init(identifier: "UTC")
+        let timeZone = NSTimeZone(abbreviation: "EST")! as TimeZone
         let formatter = DateFormatter()
         formatter.timeZone = timeZone
         formatter.locale = Locale.init(identifier: "zh_CN")

@@ -24,5 +24,65 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
+        <!--Chat DialogVC-->
+        <scene sceneID="3x0-Xn-FZS">
+            <objects>
+                <viewController storyboardIdentifier="ChatDialogVC" id="9of-re-Fce" customClass="ChatDialogVC" customModule="IMClient" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="O7b-D7-e8x">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Vd3-ch-UFe" customClass="BaseTableView" customModule="IMClient" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Vd3-ch-UFe" firstAttribute="leading" secondItem="VoO-Gh-aWv" secondAttribute="leading" id="DMN-gM-UiC"/>
+                            <constraint firstItem="Vd3-ch-UFe" firstAttribute="top" secondItem="VoO-Gh-aWv" secondAttribute="top" id="WSC-ey-fIa"/>
+                            <constraint firstItem="VoO-Gh-aWv" firstAttribute="bottom" secondItem="Vd3-ch-UFe" secondAttribute="bottom" id="bvH-hq-rVw"/>
+                            <constraint firstItem="VoO-Gh-aWv" firstAttribute="trailing" secondItem="Vd3-ch-UFe" secondAttribute="trailing" id="hNL-4T-88Y"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="VoO-Gh-aWv"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="Vd3-ch-UFe" id="sFj-pD-2aY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="B2x-wr-Gsd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="914" y="123"/>
+        </scene>
+        <!--Chat FindVC-->
+        <scene sceneID="6Xr-CT-niW">
+            <objects>
+                <viewController storyboardIdentifier="ChatFindVC" id="5Fz-Kz-3AY" customClass="ChatFindVC" customModule="IMClient" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Rqh-BY-Zkv">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kpN-gF-cJI" customClass="BaseTableView" customModule="IMClient" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Lpc-eb-byL" firstAttribute="bottom" secondItem="kpN-gF-cJI" secondAttribute="bottom" id="3uy-3F-m2O"/>
+                            <constraint firstItem="kpN-gF-cJI" firstAttribute="top" secondItem="Lpc-eb-byL" secondAttribute="top" id="Ctu-PZ-JRX"/>
+                            <constraint firstItem="Lpc-eb-byL" firstAttribute="trailing" secondItem="kpN-gF-cJI" secondAttribute="trailing" id="NVv-vy-FGw"/>
+                            <constraint firstItem="kpN-gF-cJI" firstAttribute="leading" secondItem="Lpc-eb-byL" secondAttribute="leading" id="bMJ-Y6-ant"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Lpc-eb-byL"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="kpN-gF-cJI" id="FN6-eT-Md9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YpB-6y-R1u" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1618" y="123"/>
+        </scene>
     </scenes>
 </document>

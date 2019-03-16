@@ -19,6 +19,8 @@ public enum BaseApi {
     //MARK: - 用户模块
     case register(username: String, password: String)
     case signin(username: String, password: String)
+    //MARK: - 发现模块
+    case find_user(page: Int)
 }
 
 extension BaseApi: TargetType {
@@ -34,6 +36,8 @@ extension BaseApi: TargetType {
         //MARK: - 用户模块
         case .register:         return "/register"
         case .signin:           return "/signin"
+        //MARK: - 发现模块
+        case .find_user:        return "/find/user"
         }
     }
     
@@ -42,6 +46,7 @@ extension BaseApi: TargetType {
         switch self {
         //MARK: - 用户模块
         case .register:         return .post
+        case .find_user:        return .post
         default:
             return .get
         }
@@ -58,6 +63,8 @@ extension BaseApi: TargetType {
                 "password": password
             ]
             return .requestParameters(parameters: params, encoding: URLEncoding.default)
+        case .find_user(let page):
+            return .requestParameters(parameters: ["page": page], encoding: URLEncoding.default)
         default:
             return .requestPlain
         }

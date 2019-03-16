@@ -52,7 +52,15 @@ struct ResultType {
     }
 }
 
+struct ResultSet {
+    
+    static let requestFailed  = ResultType(code: .failure)
+}
+
 enum ResultCode: Int {
+    
+    //MARK: - 100
+    case nonet              = 100
     
     //MARK: - 200
     case success            = 200
@@ -77,6 +85,8 @@ enum ResultCode: Int {
     
     init?(_ value: Int) {
         switch value {
+        //MARK: - 100
+        case 100                : self = .nonet
         //MARK: - 200
         case 200                : self = .success
         //MARK: - 400
@@ -96,6 +106,8 @@ enum ResultCode: Int {
     
     func msg() -> String {
         switch self {
+        //MARK: - 100
+        case .nonet:            return "网络丢失了"
         //MARK: - 200
         case .success:          return "请求成功"
         //MARK: - 400

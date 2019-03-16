@@ -70,17 +70,17 @@ class BaseChatModel: IMUIMessageModel {
                      date: Date,
                      status: IMUIMessageStatus) {
         let layout = ChatCellLayout(isOutGoingMessage: isOutGoing,
-                                    isNeedShowTime: false,
+                                    isNeedShowTime: true,
                                     bubbleContentSize: BaseChatModel
                                         .calculateTextContentSize(text: text),
                                     bubbleContentInsets: UIEdgeInsets.zero,
-                                    timeLabelContentSize: CGSize.zero,
+                                    timeLabelContentSize: CGSize(width: 200, height: 20),
                                     type: ChatMessageType.text)
         self.init(msgId: msgId,
                   messageStatus: status,
                   fromUser: fromUser,
                   isOutGoing: isOutGoing,
-                  date: Date(),
+                  date: date,
                   type: ChatMessageType.text,
                   text: text,
                   mediaPath: "",

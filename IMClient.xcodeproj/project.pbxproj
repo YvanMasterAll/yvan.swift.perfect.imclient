@@ -132,6 +132,15 @@
 		C63740C922376645002081ED /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63740C822376645002081ED /* ChatMessage.swift */; };
 		C64F8C332239068400EEAC53 /* STPlace.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C64F8C322239068400EEAC53 /* STPlace.bundle */; };
 		C66125A322377F8800ABF5E5 /* ChatDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66125A222377F8800ABF5E5 /* ChatDialog.swift */; };
+		C6900A8C223CF68C00F1383F /* ChatDialogVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6900A8B223CF68C00F1383F /* ChatDialogVC.swift */; };
+		C6900A8E223CF78200F1383F /* BaseTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6900A8D223CF78200F1383F /* BaseTableView.swift */; };
+		C6900A90223CF85C00F1383F /* ChatFindVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6900A8F223CF85C00F1383F /* ChatFindVC.swift */; };
+		C6900A93223CF8D000F1383F /* ChatFindCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6900A91223CF8D000F1383F /* ChatFindCell.swift */; };
+		C6900A94223CF8D000F1383F /* ChatFindCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6900A92223CF8D000F1383F /* ChatFindCell.xib */; };
+		C6900A96223CF90500F1383F /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6900A95223CF90500F1383F /* BaseTableViewCell.swift */; };
+		C6900A9F223D0E1B00F1383F /* ChatFindVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6900A9E223D0E1B00F1383F /* ChatFindVM.swift */; };
+		C6900AA1223D15B600F1383F /* TableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6900AA0223D15B600F1383F /* TableView+Extension.swift */; };
+		C6900AA3223D1C8200F1383F /* BaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6900AA2223D1C8200F1383F /* BaseHelper.swift */; };
 		C695F30E2238B7D50015C642 /* STPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = C695F30D2238B7D50015C642 /* STPlace.swift */; };
 		C6E7DE45223A688000F6B117 /* PullToRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E7DE3B223A688000F6B117 /* PullToRefresh.swift */; };
 		C6E7DE46223A688000F6B117 /* Footer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E7DE3C223A688000F6B117 /* Footer.swift */; };
@@ -302,6 +311,15 @@
 		C63740C822376645002081ED /* ChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
 		C64F8C322239068400EEAC53 /* STPlace.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = STPlace.bundle; sourceTree = "<group>"; };
 		C66125A222377F8800ABF5E5 /* ChatDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDialog.swift; sourceTree = "<group>"; };
+		C6900A8B223CF68C00F1383F /* ChatDialogVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDialogVC.swift; sourceTree = "<group>"; };
+		C6900A8D223CF78200F1383F /* BaseTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableView.swift; sourceTree = "<group>"; };
+		C6900A8F223CF85C00F1383F /* ChatFindVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatFindVC.swift; sourceTree = "<group>"; };
+		C6900A91223CF8D000F1383F /* ChatFindCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatFindCell.swift; sourceTree = "<group>"; };
+		C6900A92223CF8D000F1383F /* ChatFindCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatFindCell.xib; sourceTree = "<group>"; };
+		C6900A95223CF90500F1383F /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
+		C6900A9E223D0E1B00F1383F /* ChatFindVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatFindVM.swift; sourceTree = "<group>"; };
+		C6900AA0223D15B600F1383F /* TableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TableView+Extension.swift"; sourceTree = "<group>"; };
+		C6900AA2223D1C8200F1383F /* BaseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseHelper.swift; sourceTree = "<group>"; };
 		C695F30D2238B7D50015C642 /* STPlace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STPlace.swift; sourceTree = "<group>"; };
 		C6E7DE3B223A688000F6B117 /* PullToRefresh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PullToRefresh.swift; sourceTree = "<group>"; };
 		C6E7DE3C223A688000F6B117 /* Footer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Footer.swift; sourceTree = "<group>"; };
@@ -370,6 +388,8 @@
 		C60EECBA223BC24500FA6BF7 /* V */ = {
 			isa = PBXGroup;
 			children = (
+				C6900A91223CF8D000F1383F /* ChatFindCell.swift */,
+				C6900A92223CF8D000F1383F /* ChatFindCell.xib */,
 			);
 			path = V;
 			sourceTree = "<group>";
@@ -377,6 +397,7 @@
 		C60EECBB223BC25200FA6BF7 /* VM */ = {
 			isa = PBXGroup;
 			children = (
+				C6900A9E223D0E1B00F1383F /* ChatFindVM.swift */,
 			);
 			path = VM;
 			sourceTree = "<group>";
@@ -786,6 +807,7 @@
 				C62D7BE12233BD4A00636990 /* Reactive+Extension.swift */,
 				C63740C622375C5D002081ED /* Label+Extension.swift */,
 				C60EECB7223BC21100FA6BF7 /* ViewController+Extension.swift */,
+				C6900AA0223D15B600F1383F /* TableView+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -794,6 +816,8 @@
 			isa = PBXGroup;
 			children = (
 				C6344E98223107A30069D67E /* ChatVC.swift */,
+				C6900A8B223CF68C00F1383F /* ChatDialogVC.swift */,
+				C6900A8F223CF85C00F1383F /* ChatFindVC.swift */,
 			);
 			path = C;
 			sourceTree = "<group>";
@@ -839,6 +863,9 @@
 				C6344E93223105CE0069D67E /* BaseViewController.swift */,
 				C62B7CCC223548930048FCBA /* BaseChatViewController.swift */,
 				C62B7CD02235522B0048FCBA /* BaseChatModel.swift */,
+				C6900A8D223CF78200F1383F /* BaseTableView.swift */,
+				C6900A95223CF90500F1383F /* BaseTableViewCell.swift */,
+				C6900AA2223D1C8200F1383F /* BaseHelper.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -1007,6 +1034,7 @@
 				C62B7CA522350E590048FCBA /* IMUIAssets.bundle in Resources */,
 				C62B7CB322350E590048FCBA /* IMUIFeatureListView.xib in Resources */,
 				C62D2DCB22324ABC00A3A8B3 /* User.storyboard in Resources */,
+				C6900A94223CF8D000F1383F /* ChatFindCell.xib in Resources */,
 				C62B7CC622350E590048FCBA /* IMUIGalleryCell.xib in Resources */,
 				C62B7CBC22350E590048FCBA /* IMUICameraCell.xib in Resources */,
 				C62B7CB822350E590048FCBA /* IMUIFeatureView.xib in Resources */,
@@ -1245,6 +1273,7 @@
 				C6E7DE49223A688000F6B117 /* Right.swift in Sources */,
 				C62B7CBD22350E590048FCBA /* IMUIEmojiCell.swift in Sources */,
 				C6344EA1223117FE0069D67E /* BaseModel.swift in Sources */,
+				C6900AA3223D1C8200F1383F /* BaseHelper.swift in Sources */,
 				C62B7C8822350E590048FCBA /* UIImageMessageListExtension.swift in Sources */,
 				C62B7C9E22350E590048FCBA /* CIImageView.swift in Sources */,
 				C62B7C8622350E590048FCBA /* IMUIAudioPlayerHelper.swift in Sources */,
@@ -1256,8 +1285,10 @@
 				C62B7CAB22350E590048FCBA /* IMUIEmojiModel.swift in Sources */,
 				C62D2DD122324DA100A3A8B3 /* STBtn.swift in Sources */,
 				C62D2DD92232707900A3A8B3 /* Button+Extension.swift in Sources */,
+				C6900AA1223D15B600F1383F /* TableView+Extension.swift in Sources */,
 				C6344EB3223137490069D67E /* App.swift in Sources */,
 				C62B7CB522350E590048FCBA /* IMUIHidenStatusViewController.swift in Sources */,
+				C6900A90223CF85C00F1383F /* ChatFindVC.swift in Sources */,
 				C62B7C9222350E590048FCBA /* IMUIMessageStatusViewProtocol.swift in Sources */,
 				C62D2DDB22329E7500A3A8B3 /* UserVM.swift in Sources */,
 				C62B7CBA22350E590048FCBA /* IMUIFeatureView.swift in Sources */,
@@ -1267,6 +1298,7 @@
 				C62B7CC222350E590048FCBA /* IMUIEmojiItemCell.swift in Sources */,
 				C6344E922231029B0069D67E /* BaseFactory.swift in Sources */,
 				C62B7C7F22350E590048FCBA /* CMSampleBufferExtension.swift in Sources */,
+				C6900A8E223CF78200F1383F /* BaseTableView.swift in Sources */,
 				C6344E90223100290069D67E /* BaseColor.swift in Sources */,
 				C6344EA3223126D90069D67E /* Date+Extension.swift in Sources */,
 				C62B7CA722350E590048FCBA /* IMUIInputViewDelegate.swift in Sources */,
@@ -1279,6 +1311,7 @@
 				C62B7CB022350E590048FCBA /* IMUICustomInputView.swift in Sources */,
 				C62B7C9522350E590048FCBA /* IMUIChatDataManager.swift in Sources */,
 				C6344EA5223127840069D67E /* BaseType.swift in Sources */,
+				C6900A96223CF90500F1383F /* BaseTableViewCell.swift in Sources */,
 				C62B7CB722350E590048FCBA /* IMUIRecordVoiceCell.swift in Sources */,
 				C62B7C9322350E590048FCBA /* IMUIMessageModelProtocol.swift in Sources */,
 				C6344E552230EECA0069D67E /* AppDelegate.swift in Sources */,
@@ -1287,6 +1320,7 @@
 				C6344EAF223135CF0069D67E /* BaseUtil.swift in Sources */,
 				C62B7CCD223548930048FCBA /* BaseChatViewController.swift in Sources */,
 				C6E7DE45223A688000F6B117 /* PullToRefresh.swift in Sources */,
+				C6900A8C223CF68C00F1383F /* ChatDialogVC.swift in Sources */,
 				C62B7CA222350E590048FCBA /* IMUIVideoMessageContentView.swift in Sources */,
 				C62B7CA922350E590048FCBA /* BundleInputViewExtension.swift in Sources */,
 				C62B7CC122350E590048FCBA /* IMUIGalleryCell.swift in Sources */,
@@ -1310,6 +1344,7 @@
 				C62B7C9B22350E590048FCBA /* IMUIMessageCollectionView.swift in Sources */,
 				C6344E8B2230FD180069D67E /* BaseTheme.swift in Sources */,
 				C62B7C8222350E590048FCBA /* CGRectExtension.swift in Sources */,
+				C6900A9F223D0E1B00F1383F /* ChatFindVM.swift in Sources */,
 				C62D2DD322324E1C00A3A8B3 /* STTxf.swift in Sources */,
 				C62B7C8722350E590048FCBA /* BundleMessageListExtension.swift in Sources */,
 				C62966A022322D7900ADBEE6 /* Moya+Extension.swift in Sources */,
@@ -1322,6 +1357,7 @@
 				C6E7DE4B223A688000F6B117 /* ElasticRefreshHeader.swift in Sources */,
 				C6E7DE4A223A688000F6B117 /* Utils.swift in Sources */,
 				C6E7DE50223A773A00F6B117 /* BaseRefreshHeader.swift in Sources */,
+				C6900A93223CF8D000F1383F /* ChatFindCell.swift in Sources */,
 				C6344E8E2230FD8A0069D67E /* Color+Extension.swift in Sources */,
 				C62B7CAD22350E590048FCBA /* IMUIInputView.swift in Sources */,
 				C62B7CC922350E590048FCBA /* IMUIFeatureListView.swift in Sources */,

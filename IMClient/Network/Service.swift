@@ -73,3 +73,26 @@ class UserService {
             }
     }
 }
+
+class FindService {
+    
+    //MARK: - 单例
+    static let instance = FindService()
+    private init() { }
+    
+    //MARK: - 发现用户
+    func find_user(page: Int) -> Observable<([User], ResultType)> {
+        return BaseProvider.rx.request(.find_user(page: page))
+            .mapObject(BaseResult.self)
+            .asObservable()
+            .observeOn(MainScheduler.instance)
+            .map{ data in
+                if data.result.code.valid() {
+                    let list = [User].init(JSONArray: data.dataDicts!)
+                    return (list, data.result)
+                }
+                return ([], data.result)
+            }
+            .catchErrorJustReturn(([], ResultSet.requestFailed))
+    }
+}

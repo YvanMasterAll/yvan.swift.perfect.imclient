@@ -9,7 +9,7 @@
 import UIKit
 import Foundation
 
-class BaseViewController: UIViewController, StoryboardLoadable {
+class BaseViewController: UIViewController, StoryboardLoadable, StatePageProtocol {
     
     //MARK: - 声明区域
     open var backGestured       : Bool = true       //测滑返回
@@ -53,6 +53,18 @@ class BaseViewController: UIViewController, StoryboardLoadable {
     deinit {
         print("deinit: \(type(of: self))")
     }
+    
+    //MARK: - 私有成员
+    fileprivate var basePlace: STPlace!             //占位视图
+    fileprivate var needReload: Bool = true         //重载判断
+    internal var requested: Bool = false            //请求数据, 成功
+}
+
+//MARK: - 委托方法
+extension BaseViewController {
+    
+    //MARK: - 重载数据
+    @objc func reload() { }
 }
 
 //MARK: - 初始化
@@ -61,6 +73,9 @@ extension BaseViewController {
     fileprivate func baseSetupUI() {
         //背景色
         self.view.backgroundColor = BaseTheme.color.neutral50
+        //Place
+        basePlace = STPlace(target: self.view)
+        basePlace.delegate = self
     }
     
     fileprivate func baseSetupNavbar() {
@@ -105,6 +120,34 @@ extension BaseViewController {
         } else { //导航栏隐藏
             self.navigationController?.setNavigationBarHidden(true, animated: false)
             self.navigationItem.backBarButtonItem = UIBarButtonItem.init(title: "", style: .plain, target: self, action: nil)
+        }
+    }
+}
+
+//MARK: - 占位视图
+extension BaseViewController {
+    
+    func show_loading() {
+        basePlace.show(style: .loading(type: .ballScaleMultiple, options: nil))
+    }
+    
+    func show_place() {
+        needReload = false
+        basePlace.show(style: .empty(type: .nodata, options: nil))
+    }
+    
+    func hide_place() {
+        basePlace.hide()
+    }
+}
+
+//MARK: - STPlaceDelegate
+extension BaseViewController: PlaceDelegate {
+    
+    func placeViewClicked() {
+        if needReload {
+            self.hide_place()
+            self.reload()
         }
     }
 }

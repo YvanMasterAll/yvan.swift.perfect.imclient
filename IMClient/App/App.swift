@@ -29,3 +29,8 @@ public enum BaseStatusType {
     case userinfo_local //更新用户信息, 本地更新, 如关注数
 }
 let BaseStatus = PublishSubject<BaseStatusType>()
+
+//MARK: - 刷新状态
+public enum RefreshStatus {
+    case nonet, nodata, nodata_foot, end, end_foot
+}

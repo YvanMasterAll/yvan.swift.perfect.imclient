@@ -202,7 +202,7 @@ extension STPlace {
 extension STPlace {
     
     fileprivate func image(name: String) -> UIImage? {
-        if let bundlePath = Bundle.main.path(forResource: "\(self)", ofType: "bundle"),
+        if let bundlePath = Bundle.main.path(forResource: "STPlace", ofType: "bundle"),
             let bundle = Bundle(path: bundlePath) {
             let imagePath = bundle.path(forResource: "images/\(name)", ofType: "png")
             if let path = imagePath {
@@ -237,7 +237,7 @@ public struct PlaceEmptyOptions: PlaceOptions {     //空视图选项
     
     var description : String?                       //描述内容
     var position    : PlacePosition = .center       //内容位置
-    var margin_top  : CGFloat       = 40            //顶部边距
+    var margin_top  : CGFloat       = 60            //顶部边距
     
     init(_ config: ((PlaceEmptyOptions) -> Void)? = nil) { config?(self) }
     
@@ -246,7 +246,7 @@ public struct PlaceEmptyOptions: PlaceOptions {     //空视图选项
 public struct PlaceLoadOptions: PlaceOptions {      //加载视图选项
     
     var position    : PlacePosition = .top          //内容位置
-    var margin_top  : CGFloat       = 40            //顶部边距
+    var margin_top  : CGFloat       = 60            //顶部边距
     
     init(_ config: ((PlaceLoadOptions) -> Void)? = nil) { config?(self) }
     
