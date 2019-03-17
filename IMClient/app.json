@@ -1,5 +1,4 @@
 {
-    //"ibaseURL" : "http://www.shutuer.com"
     "baseURL" : "http://localhost:8181",
     "baseURL_socket": "ws://localhost:8181/api/v1/chat"
 }

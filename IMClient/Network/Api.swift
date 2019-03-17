@@ -11,8 +11,8 @@ import Moya
 //MARK: - API
 public var BaseProvider: MoyaProvider = MoyaProvider<BaseApi>(
     endpointClosure: baseEndpointClosure,       //端点闭包
-    requestClosure: baseRequestClosure,         //请求闭包
-    stubClosure: MoyaProvider.delayedStub(2)    //immediatelyStub, 测试闭包
+    requestClosure: baseRequestClosure          //请求闭包
+    //stubClosure: MoyaProvider.delayedStub(2)  //immediatelyStub, 测试闭包
 )
 
 public enum BaseApi {
@@ -34,8 +34,8 @@ extension BaseApi: TargetType {
     public var path: String {
         switch self {
         //MARK: - 用户模块
-        case .register:         return "/register"
-        case .signin:           return "/signin"
+        case .register:         return "/user/register"
+        case .signin:           return "/user/signin"
         //MARK: - 发现模块
         case .find_user:        return "/find/user"
         }
@@ -45,8 +45,10 @@ extension BaseApi: TargetType {
     public var method: Method {
         switch self {
         //MARK: - 用户模块
-        case .register:         return .post
-        case .find_user:        return .post
+        case .register,
+             .signin,
+             .find_user:
+            return .post
         default:
             return .get
         }
@@ -58,6 +60,13 @@ extension BaseApi: TargetType {
         //MARK: - 用户模块
         case .register(let username,
                     let password):
+            let params = [
+                "username": username,
+                "password": password
+            ]
+            return .requestParameters(parameters: params, encoding: URLEncoding.default)
+        case .signin(let username,
+                     let password):
             let params = [
                 "username": username,
                 "password": password

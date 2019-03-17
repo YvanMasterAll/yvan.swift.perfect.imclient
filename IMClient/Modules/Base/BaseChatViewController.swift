@@ -23,11 +23,11 @@ class BaseChatViewController: BaseViewController {
     
     func getUser() -> User {
         //yTest
-        var user = User()
-        user.id = 4
-        user.nickname = "yi002"
-        user.avatar = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1534926548887&di=f107f4f8bd50fada6c5770ef27535277&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F11%2F67%2F23%2F69i58PICP37.jpg"
-        return user
+//        var user = User()
+//        user.id = 4
+//        user.nickname = "yi002"
+//        user.avatar = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1534926548887&di=f107f4f8bd50fada6c5770ef27535277&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F11%2F67%2F23%2F69i58PICP37.jpg"
+        return Environment.user ?? User()
     }
     
     func getTarget() -> User {
@@ -50,8 +50,8 @@ class BaseChatViewController: BaseViewController {
     }
     
     deinit {
-        socket.disconnect()
-        print("deinit: \(type(of: self))")
+//        socket.disconnect()
+//        print("deinit: \(type(of: self))")
     }
     
     //MARK: - 私有成员
@@ -100,10 +100,10 @@ extension BaseChatViewController {
     }
     
     fileprivate func baseSetupSocket() {
-        dialogid = getDialogId()
-        socket = WebSocket(url: URL(string: url)!)
-        socket.delegate = self
-        socket.connect()
+//        dialogid = getDialogId()
+//        socket = WebSocket(url: URL(string: url)!)
+//        socket.delegate = self
+//        socket.connect()
     }
 }
 

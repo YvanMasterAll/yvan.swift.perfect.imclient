@@ -21,7 +21,6 @@ class BaseViewController: UIViewController, StoryboardLoadable, StatePageProtoco
     open var navBarLeftTitle    : String?           //导航栏左侧按钮
     open var navBarRightTitle   : String?           //导航栏左侧按钮
     open var navBarRightIcon    : String?           //导航栏右侧图标
-    open var navBarNeedBack     : Bool = false      //导航栏左侧返回按钮
     
     //MARK: - 导航栏事件
     func navBarLeftClicked() { }
@@ -110,10 +109,6 @@ extension BaseViewController {
                     .withSize(size: CGSize(width: 32, height: 32))
                     , for: .normal, barMetrics: UIBarMetrics.default)
                 self.navigationItem.rightBarButtonItem = rightBarButton
-            }
-            //导航栏返回按钮
-            if navBarNeedBack {
-                self.navigationItem.backBarButtonItem = UIBarButtonItem.init(title: "", style: .plain, target: self, action: nil)
             }
             //导航栏显示
             self.navigationController?.setNavigationBarHidden(false, animated: false)

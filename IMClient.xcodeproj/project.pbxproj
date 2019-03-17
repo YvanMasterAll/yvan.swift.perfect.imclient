@@ -10,6 +10,7 @@
 		0A277B9F0D6BC7ABFB3DBA4D /* Pods_IMClientTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E5AB90DCD0E52D39FC9FBBC /* Pods_IMClientTests.framework */; };
 		0FC2092DD8D4E5D726A16987 /* Pods_IMClientUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C7F26B320B2A2CE9E5B9549 /* Pods_IMClientUITests.framework */; };
 		C60EECB8223BC21100FA6BF7 /* ViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60EECB7223BC21100FA6BF7 /* ViewController+Extension.swift */; };
+		C6264867223E0A2A000E5F05 /* app.json in Resources */ = {isa = PBXBuildFile; fileRef = C6264866223E0A29000E5F05 /* app.json */; };
 		C629669C2232195400ADBEE6 /* STHud.swift in Sources */ = {isa = PBXBuildFile; fileRef = C629669B2232195400ADBEE6 /* STHud.swift */; };
 		C629669E22322AEF00ADBEE6 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = C629669D22322AEF00ADBEE6 /* Service.swift */; };
 		C62966A022322D7900ADBEE6 /* Moya+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C629669F22322D7900ADBEE6 /* Moya+Extension.swift */; };
@@ -183,6 +184,7 @@
 		A9F1E1EF0507BA243E4CADF5 /* Pods-IMClientTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IMClientTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-IMClientTests/Pods-IMClientTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C08F8E7EAF700223053CAFB0 /* Pods-IMClientUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IMClientUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-IMClientUITests/Pods-IMClientUITests.release.xcconfig"; sourceTree = "<group>"; };
 		C60EECB7223BC21100FA6BF7 /* ViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Extension.swift"; sourceTree = "<group>"; };
+		C6264866223E0A29000E5F05 /* app.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = app.json; sourceTree = "<group>"; };
 		C629669B2232195400ADBEE6 /* STHud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STHud.swift; sourceTree = "<group>"; };
 		C629669D22322AEF00ADBEE6 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		C629669F22322D7900ADBEE6 /* Moya+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Moya+Extension.swift"; sourceTree = "<group>"; };
@@ -723,6 +725,7 @@
 				C6344E852230F5D90069D67E /* IMTest */,
 				C6344E822230F32B0069D67E /* Others */,
 				C6344E602230EECC0069D67E /* Info.plist */,
+				C6264866223E0A29000E5F05 /* app.json */,
 			);
 			path = IMClient;
 			sourceTree = "<group>";
@@ -1036,6 +1039,7 @@
 				C62D2DCB22324ABC00A3A8B3 /* User.storyboard in Resources */,
 				C6900A94223CF8D000F1383F /* ChatFindCell.xib in Resources */,
 				C62B7CC622350E590048FCBA /* IMUIGalleryCell.xib in Resources */,
+				C6264867223E0A2A000E5F05 /* app.json in Resources */,
 				C62B7CBC22350E590048FCBA /* IMUICameraCell.xib in Resources */,
 				C62B7CB822350E590048FCBA /* IMUIFeatureView.xib in Resources */,
 			);
@@ -1068,6 +1072,7 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
 				"${BUILT_PRODUCTS_DIR}/FBRetainCycleDetector/FBRetainCycleDetector.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/MLeaksFinder/MLeaksFinder.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
@@ -1087,6 +1092,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBRetainCycleDetector.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MLeaksFinder.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
@@ -1116,6 +1122,7 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
 				"${BUILT_PRODUCTS_DIR}/FBRetainCycleDetector/FBRetainCycleDetector.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/MLeaksFinder/MLeaksFinder.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
@@ -1135,6 +1142,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBRetainCycleDetector.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MLeaksFinder.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
@@ -1164,6 +1172,7 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
 				"${BUILT_PRODUCTS_DIR}/FBRetainCycleDetector/FBRetainCycleDetector.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/MLeaksFinder/MLeaksFinder.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
@@ -1183,6 +1192,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBRetainCycleDetector.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MLeaksFinder.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",

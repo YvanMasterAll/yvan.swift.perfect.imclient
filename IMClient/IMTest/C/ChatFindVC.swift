@@ -10,6 +10,7 @@ import UIKit
 import RxCocoa
 import RxSwift
 import RxDataSources
+import Kingfisher
 
 class ChatFindVC: BaseViewController {
 
@@ -59,8 +60,22 @@ extension ChatFindVC {
             configureCell: { [unowned self] ds, tv, ip, item in
                 let cell = tv.dequeueReusableCell(withIdentifier: self.cellIdentifier,
                                                   for: ip) as! ChatFindCell
+                if let imageUrl = item.avatar {
+                    cell.img_avatar.kf.setImage(with: URL(string: imageUrl))
+                }
+                cell.lable_name.text = item.nickname
                 return cell
         })
+        tableView.rx
+            .modelSelected(User.self)
+            .subscribe(onNext: { [weak self] data in
+                //页面跳转
+                let vc = ChatVC.storyboard(from: "Chat")
+                vc.dialogtype = .single
+                vc.target = data
+                self?.navigationController?.pushViewController(vc, animated: true)
+            })
+            .disposed(by: disposeBag)
         vmodel.outputs.sections?.asDriver()
             .drive(tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)

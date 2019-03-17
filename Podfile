@@ -13,6 +13,7 @@ targets.each do |t|
 		pod 'SwiftValidators' 			#验证框架
 		pod 'Starscream' 				#网络通讯
 		pod 'NVActivityIndicatorView' 	#加载图标
+		pod 'Kingfisher'				#图片缓存
 		pod 'WatchdogInspector' 		#FPS
 		pod 'MLeaksFinder' 				#内存泄露
 	end

@@ -42,7 +42,7 @@ extension BaseRefreshHeader {
     }
     
     func heightForFireRefreshing() -> CGFloat {
-        return 120.0
+        return 100.0
     }
     
     func heightForRefreshingState() -> CGFloat {

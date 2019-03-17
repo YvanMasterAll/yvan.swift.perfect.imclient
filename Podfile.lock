@@ -2,6 +2,7 @@ PODS:
   - Alamofire (4.8.1)
   - Differentiator (3.1.0)
   - FBRetainCycleDetector (0.1.4)
+  - Kingfisher (4.10.1)
   - MLeaksFinder (1.0.0):
     - FBRetainCycleDetector
   - Moya/Core (12.0.1):
@@ -30,6 +31,7 @@ PODS:
   - WatchdogInspector (1.3.0)
 
 DEPENDENCIES:
+  - Kingfisher
   - MLeaksFinder
   - Moya/RxSwift
   - NVActivityIndicatorView
@@ -47,6 +49,7 @@ SPEC REPOS:
     - Alamofire
     - Differentiator
     - FBRetainCycleDetector
+    - Kingfisher
     - MLeaksFinder
     - Moya
     - NVActivityIndicatorView
@@ -65,6 +68,7 @@ SPEC CHECKSUMS:
   Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
   Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
   FBRetainCycleDetector: 46f8179bbb1c587deee3ea838a1a3ee02acf5015
+  Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
   MLeaksFinder: 8c435bd2f6d070af18cff082b503b21adc130fc0
   Moya: cf730b3cd9e005401ef37a85143aa141a12fd38f
   NVActivityIndicatorView: 4ca19fccc84595a78957336a086d00a49be6ce61
@@ -79,6 +83,6 @@ SPEC CHECKSUMS:
   SwiftValidators: 282173fae9e2fee864212b0128fcb25a81d53fba
   WatchdogInspector: 439a73b047028a6048a59e56b70fcf11045a6e13
 
-PODFILE CHECKSUM: 13b959461620d3c39f54bca6ffff0a42550c2bbf
+PODFILE CHECKSUM: 321bc698e6de52336d94e343eb88c7fcb2a130e8
 
 COCOAPODS: 1.5.3
