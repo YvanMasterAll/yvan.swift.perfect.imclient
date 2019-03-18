@@ -38,7 +38,8 @@ class IMUIViewCache<T> {
   }
   
   func dequeueContentView(layout: IMUIMessageCellLayoutProtocol) -> T {
-    print("statusView in use count \(self.inUseViews.count)  not in use count \(self.notInUseViews.count)")
+    //yTest
+    //print("statusView in use count \(self.inUseViews.count)  not in use count \(self.notInUseViews.count)")
     
     if notInUseViews.isEmpty {
       let view = layout.bubbleContentView as! UIView
@@ -61,7 +62,8 @@ class IMUIViewCache<T> {
     if let view = inUseViews[view.hashValue] as? UIView {
       inUseViews.removeValue(forKey: view.hashValue)
       notInUseViews[view.hashValue] = reuseView
-      print("switchViewToNotInUse")
+      //yTest
+      //print("switchViewToNotInUse")
     }
 
   }

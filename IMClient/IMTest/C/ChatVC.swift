@@ -2,49 +2,35 @@
 //  ChatVC.swift
 //  IMClient
 //
-//  Created by Yiqiang Zeng on 2019/3/7.
+//  Created by Yiqiang Zeng on 2019/3/17.
 //  Copyright © 2019 Yiqiang Zeng. All rights reserved.
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
+import RxDataSources
 
-class ChatVC: BaseChatViewController {
+class ChatVC: BaseViewController {
     
-    //MARK: - 声明区域
-    open var dialogtype : DialogType!
-    open var dialogid   : String?
-    open var target     : User!
-    
-    override func getTarget() -> User {
-        return target
-    }
-    
-    override func getDialogType() -> DialogType {
-        return dialogtype
-    }
-    
-    override func getDialogId() -> String? {
-        return dialogid
-    }
+    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //yTest
-//        dialogtype = DialogType.single
-//        target = User()
-//        target?.id = 2
-//        target?.nickname = "yi001"
-//        target?.avatar = ""
-        
         setupUI()
+        bindRx()
     }
 }
 
+//MARK: - 初始化
 extension ChatVC {
     
-    //MARK: - 初始化
     fileprivate func setupUI() {
+        
+    }
+    
+    fileprivate func bindRx() {
         
     }
 }

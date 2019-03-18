@@ -37,7 +37,7 @@ extension BaseApi: TargetType {
         case .register:         return "/user/register"
         case .signin:           return "/user/signin"
         //MARK: - 发现模块
-        case .find_user:        return "/find/user"
+        case .find_user:        return "/find/user/list"
         }
     }
     
@@ -119,6 +119,8 @@ let baseEndpointClosure = { (target: BaseApi) -> Endpoint in
     let defaultEndpoint = MoyaProvider.defaultEndpointMapping(for: target)
     return defaultEndpoint
 }
+
+//MARK: - Extension
 
 //MARK: - 测试数据
 fileprivate struct BaseApiTestData {

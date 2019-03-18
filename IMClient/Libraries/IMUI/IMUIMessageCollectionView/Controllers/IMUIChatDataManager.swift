@@ -48,7 +48,8 @@ class IMUIChatDataManager: NSObject {
   
   func updateMessage(with message: IMUIMessageProtocol) {
     if message.msgId == "" {
-      print("the msgId is empty, cann't update message")
+      //yTest
+      //print("the msgId is empty, cann't update message")
       return
     }
     
@@ -57,7 +58,8 @@ class IMUIChatDataManager: NSObject {
   
   func removeMessage(with messageId: String) {
     if messageId == "" {
-      print("the msgId is empty, cann't update message")
+      //yTest
+      //print("the msgId is empty, cann't update message")
       return
     }
     allMessageDic.removeValue(forKey: messageId)
@@ -73,7 +75,8 @@ class IMUIChatDataManager: NSObject {
   
   func insertMessage(with message: IMUIMessageProtocol) {
     if message.msgId == "" {
-      print("the msgId is empty, cann't insert message")
+      //yTest
+      //print("the msgId is empty, cann't insert message")
       return
     }
     

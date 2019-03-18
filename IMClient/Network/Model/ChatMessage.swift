@@ -24,6 +24,7 @@ public struct ChatMessage: BaseModel {
     var updatetime  : Date?
     var status      : Status?
     var pageindex   : Int?              //页面索引, 本地使用
+    var token       : String?           //身份认证, 本地使用
     
     public init(){}
     
@@ -45,5 +46,10 @@ public struct ChatMessage: BaseModel {
         updatetime  <- (map["updatetime"], transfromOfDate())
         status      <- (map["status"], transfromOfType())
         pageindex   <- map["pageindex"]
+        token       <- map["token"]
+    }
+    
+    public mutating func tokened() {
+        self.token = Environment.token
     }
 }

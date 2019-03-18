@@ -226,8 +226,9 @@ public extension UICollectionView {
     
     let deltaHeight = contentSizeAfterInsert.height - contentSizeBeforeInsert.height
     currentOffset.y += (deltaHeight > 0 ? deltaHeight : 0)
-    print("the currentOffset\(currentOffset.y)")
-    print("the currentOffset\(currentOffset)")
+    //yTest
+    //print("the currentOffset\(currentOffset.y)")
+    //print("the currentOffset\(currentOffset)")
     self.setContentOffset(currentOffset, animated: false)
   }
   

@@ -18,7 +18,7 @@ let baseConfig = "app.json"
 
 //MARK: - 请求地址
 var baseURL_i = "http://localhost:8181"
-var baseURL_socket = "ws://localhost:8181/api/v1/chat"
+var baseURL_socket = "ws://localhost:8181/api/v1/chat/socket"
 
 //MARK: - 应用状态
 public enum BaseStatusType {

@@ -105,7 +105,8 @@ open class IMUIFeatureListView: UIView {
       spaceWidth = (frameWidth - CGFloat(IMUIFeatureListView.featureListItemSpace * 2) - totalCellWidth)
     }
     
-    print("frameWidth :\(frameWidth)  spaceWidth: \(spaceWidth)")
+    //yTest
+    //print("frameWidth :\(frameWidth)  spaceWidth: \(spaceWidth)")
     (self.featureListCollectionView.collectionViewLayout as! UICollectionViewFlowLayout).minimumLineSpacing = spaceWidth
 
     insets.left = CGFloat(IMUIFeatureListView.featureListItemSpace)

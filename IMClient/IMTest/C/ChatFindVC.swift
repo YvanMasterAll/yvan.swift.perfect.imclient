@@ -41,7 +41,7 @@ class ChatFindVC: BaseViewController {
 extension ChatFindVC {
     
     fileprivate func setupUI() {
-        tableView.register(nib: "ChatFindCell", identifier: cellIdentifier)
+        tableView.register(nib: cellIdentifier, identifier: cellIdentifier)
         //PullToRefreshKit
         tableView.configRefreshHeader(with: BaseRefreshHeader(),
                                       container: self) { [weak self] () -> Void in
@@ -70,7 +70,7 @@ extension ChatFindVC {
             .modelSelected(User.self)
             .subscribe(onNext: { [weak self] data in
                 //页面跳转
-                let vc = ChatVC.storyboard(from: "Chat")
+                let vc = ChatRoomVC.storyboard(from: "Chat")
                 vc.dialogtype = .single
                 vc.target = data
                 self?.navigationController?.pushViewController(vc, animated: true)

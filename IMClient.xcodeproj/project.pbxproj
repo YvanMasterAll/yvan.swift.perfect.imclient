@@ -10,7 +10,13 @@
 		0A277B9F0D6BC7ABFB3DBA4D /* Pods_IMClientTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E5AB90DCD0E52D39FC9FBBC /* Pods_IMClientTests.framework */; };
 		0FC2092DD8D4E5D726A16987 /* Pods_IMClientUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C7F26B320B2A2CE9E5B9549 /* Pods_IMClientUITests.framework */; };
 		C60EECB8223BC21100FA6BF7 /* ViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60EECB7223BC21100FA6BF7 /* ViewController+Extension.swift */; };
+		C624F905223F55B100C2B380 /* ChatDialogVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C624F904223F55B100C2B380 /* ChatDialogVM.swift */; };
 		C6264867223E0A2A000E5F05 /* app.json in Resources */ = {isa = PBXBuildFile; fileRef = C6264866223E0A29000E5F05 /* app.json */; };
+		C627C229223E430500C45B01 /* ChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C627C228223E430500C45B01 /* ChatVC.swift */; };
+		C627C230223E491E00C45B01 /* ChatDialogCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C627C22E223E491E00C45B01 /* ChatDialogCell.swift */; };
+		C627C231223E491E00C45B01 /* ChatDialogCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C627C22F223E491E00C45B01 /* ChatDialogCell.xib */; };
+		C627C235223E849100C45B01 /* Starscreen+RxSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = C627C234223E849100C45B01 /* Starscreen+RxSwift.swift */; };
+		C627C238223E8D5B00C45B01 /* BaseChatSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = C627C237223E8D5B00C45B01 /* BaseChatSession.swift */; };
 		C629669C2232195400ADBEE6 /* STHud.swift in Sources */ = {isa = PBXBuildFile; fileRef = C629669B2232195400ADBEE6 /* STHud.swift */; };
 		C629669E22322AEF00ADBEE6 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = C629669D22322AEF00ADBEE6 /* Service.swift */; };
 		C62966A022322D7900ADBEE6 /* Moya+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C629669F22322D7900ADBEE6 /* Moya+Extension.swift */; };
@@ -116,7 +122,7 @@
 		C6344E90223100290069D67E /* BaseColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6344E8F223100290069D67E /* BaseColor.swift */; };
 		C6344E922231029B0069D67E /* BaseFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6344E912231029B0069D67E /* BaseFactory.swift */; };
 		C6344E94223105CE0069D67E /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6344E93223105CE0069D67E /* BaseViewController.swift */; };
-		C6344E99223107A30069D67E /* ChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6344E98223107A30069D67E /* ChatVC.swift */; };
+		C6344E99223107A30069D67E /* ChatRoomVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6344E98223107A30069D67E /* ChatRoomVC.swift */; };
 		C6344E9B223107F40069D67E /* Loadable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6344E9A223107F40069D67E /* Loadable+Extension.swift */; };
 		C6344E9D2231116A0069D67E /* Image+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6344E9C2231116A0069D67E /* Image+Extension.swift */; };
 		C6344EA1223117FE0069D67E /* BaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6344EA0223117FE0069D67E /* BaseModel.swift */; };
@@ -184,7 +190,13 @@
 		A9F1E1EF0507BA243E4CADF5 /* Pods-IMClientTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IMClientTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-IMClientTests/Pods-IMClientTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C08F8E7EAF700223053CAFB0 /* Pods-IMClientUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IMClientUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-IMClientUITests/Pods-IMClientUITests.release.xcconfig"; sourceTree = "<group>"; };
 		C60EECB7223BC21100FA6BF7 /* ViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Extension.swift"; sourceTree = "<group>"; };
+		C624F904223F55B100C2B380 /* ChatDialogVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDialogVM.swift; sourceTree = "<group>"; };
 		C6264866223E0A29000E5F05 /* app.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = app.json; sourceTree = "<group>"; };
+		C627C228223E430500C45B01 /* ChatVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatVC.swift; sourceTree = "<group>"; };
+		C627C22E223E491E00C45B01 /* ChatDialogCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDialogCell.swift; sourceTree = "<group>"; };
+		C627C22F223E491E00C45B01 /* ChatDialogCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatDialogCell.xib; sourceTree = "<group>"; };
+		C627C234223E849100C45B01 /* Starscreen+RxSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Starscreen+RxSwift.swift"; sourceTree = "<group>"; };
+		C627C237223E8D5B00C45B01 /* BaseChatSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseChatSession.swift; sourceTree = "<group>"; };
 		C629669B2232195400ADBEE6 /* STHud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STHud.swift; sourceTree = "<group>"; };
 		C629669D22322AEF00ADBEE6 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		C629669F22322D7900ADBEE6 /* Moya+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Moya+Extension.swift"; sourceTree = "<group>"; };
@@ -296,7 +308,7 @@
 		C6344E8F223100290069D67E /* BaseColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseColor.swift; sourceTree = "<group>"; };
 		C6344E912231029B0069D67E /* BaseFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseFactory.swift; sourceTree = "<group>"; };
 		C6344E93223105CE0069D67E /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
-		C6344E98223107A30069D67E /* ChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatVC.swift; sourceTree = "<group>"; };
+		C6344E98223107A30069D67E /* ChatRoomVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomVC.swift; sourceTree = "<group>"; };
 		C6344E9A223107F40069D67E /* Loadable+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Loadable+Extension.swift"; sourceTree = "<group>"; };
 		C6344E9C2231116A0069D67E /* Image+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Extension.swift"; sourceTree = "<group>"; };
 		C6344EA0223117FE0069D67E /* BaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseModel.swift; sourceTree = "<group>"; };
@@ -392,6 +404,8 @@
 			children = (
 				C6900A91223CF8D000F1383F /* ChatFindCell.swift */,
 				C6900A92223CF8D000F1383F /* ChatFindCell.xib */,
+				C627C22E223E491E00C45B01 /* ChatDialogCell.swift */,
+				C627C22F223E491E00C45B01 /* ChatDialogCell.xib */,
 			);
 			path = V;
 			sourceTree = "<group>";
@@ -400,8 +414,19 @@
 			isa = PBXGroup;
 			children = (
 				C6900A9E223D0E1B00F1383F /* ChatFindVM.swift */,
+				C624F904223F55B100C2B380 /* ChatDialogVM.swift */,
 			);
 			path = VM;
+			sourceTree = "<group>";
+		};
+		C627C236223E8D1300C45B01 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				C62B7CCC223548930048FCBA /* BaseChatViewController.swift */,
+				C62B7CD02235522B0048FCBA /* BaseChatModel.swift */,
+				C627C237223E8D5B00C45B01 /* BaseChatSession.swift */,
+			);
+			path = Chat;
 			sourceTree = "<group>";
 		};
 		C629669A2232193300ADBEE6 /* Components */ = {
@@ -811,6 +836,7 @@
 				C63740C622375C5D002081ED /* Label+Extension.swift */,
 				C60EECB7223BC21100FA6BF7 /* ViewController+Extension.swift */,
 				C6900AA0223D15B600F1383F /* TableView+Extension.swift */,
+				C627C234223E849100C45B01 /* Starscreen+RxSwift.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -818,7 +844,8 @@
 		C6344E95223107330069D67E /* C */ = {
 			isa = PBXGroup;
 			children = (
-				C6344E98223107A30069D67E /* ChatVC.swift */,
+				C627C228223E430500C45B01 /* ChatVC.swift */,
+				C6344E98223107A30069D67E /* ChatRoomVC.swift */,
 				C6900A8B223CF68C00F1383F /* ChatDialogVC.swift */,
 				C6900A8F223CF85C00F1383F /* ChatFindVC.swift */,
 			);
@@ -862,10 +889,9 @@
 		C6344EAD223135860069D67E /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				C627C236223E8D1300C45B01 /* Chat */,
 				C6344E882230F8790069D67E /* BaseNavigationController.swift */,
 				C6344E93223105CE0069D67E /* BaseViewController.swift */,
-				C62B7CCC223548930048FCBA /* BaseChatViewController.swift */,
-				C62B7CD02235522B0048FCBA /* BaseChatModel.swift */,
 				C6900A8D223CF78200F1383F /* BaseTableView.swift */,
 				C6900A95223CF90500F1383F /* BaseTableViewCell.swift */,
 				C6900AA2223D1C8200F1383F /* BaseHelper.swift */,
@@ -1024,6 +1050,7 @@
 				C62B7CCA22350E590048FCBA /* IMUIFeatureListIconCell.xib in Resources */,
 				C62B7CC822350E590048FCBA /* IMUIRecordVoiceCell.xib in Resources */,
 				C62B7CC522350E590048FCBA /* IMUIEmojiItemCell.xib in Resources */,
+				C627C231223E491E00C45B01 /* ChatDialogCell.xib in Resources */,
 				C62B7CC022350E590048FCBA /* IMUIPermissionDenyedView.xib in Resources */,
 				C6344E5C2230EECC0069D67E /* Assets.xcassets in Resources */,
 				C62B7CBB22350E590048FCBA /* IMUIEmojiCell.xib in Resources */,
@@ -1275,13 +1302,15 @@
 			files = (
 				C62B7CAF22350E590048FCBA /* IMUIGalleryDataManager.swift in Sources */,
 				C629669C2232195400ADBEE6 /* STHud.swift in Sources */,
-				C6344E99223107A30069D67E /* ChatVC.swift in Sources */,
+				C6344E99223107A30069D67E /* ChatRoomVC.swift in Sources */,
 				C62B7CA022350E590048FCBA /* IMUITextMessageContentView.swift in Sources */,
+				C627C238223E8D5B00C45B01 /* BaseChatSession.swift in Sources */,
 				C63740C722375C5D002081ED /* Label+Extension.swift in Sources */,
 				C6344E892230F8790069D67E /* BaseNavigationController.swift in Sources */,
 				C62966A2223231E200ADBEE6 /* ServiceUtil.swift in Sources */,
 				C6E7DE49223A688000F6B117 /* Right.swift in Sources */,
 				C62B7CBD22350E590048FCBA /* IMUIEmojiCell.swift in Sources */,
+				C627C235223E849100C45B01 /* Starscreen+RxSwift.swift in Sources */,
 				C6344EA1223117FE0069D67E /* BaseModel.swift in Sources */,
 				C6900AA3223D1C8200F1383F /* BaseHelper.swift in Sources */,
 				C62B7C8822350E590048FCBA /* UIImageMessageListExtension.swift in Sources */,
@@ -1306,6 +1335,7 @@
 				C62B7C9422350E590048FCBA /* IMUIMessageCellLayoutProtocol.swift in Sources */,
 				C62B7C8322350E590048FCBA /* StringExtension.swift in Sources */,
 				C62B7CC222350E590048FCBA /* IMUIEmojiItemCell.swift in Sources */,
+				C627C229223E430500C45B01 /* ChatVC.swift in Sources */,
 				C6344E922231029B0069D67E /* BaseFactory.swift in Sources */,
 				C62B7C7F22350E590048FCBA /* CMSampleBufferExtension.swift in Sources */,
 				C6900A8E223CF78200F1383F /* BaseTableView.swift in Sources */,
@@ -1339,6 +1369,7 @@
 				C66125A322377F8800ABF5E5 /* ChatDialog.swift in Sources */,
 				C6344E9D2231116A0069D67E /* Image+Extension.swift in Sources */,
 				C6344E9B223107F40069D67E /* Loadable+Extension.swift in Sources */,
+				C627C230223E491E00C45B01 /* ChatDialogCell.swift in Sources */,
 				C695F30E2238B7D50015C642 /* STPlace.swift in Sources */,
 				C62B7C9622350E590048FCBA /* IMUIVideoFileLoader.swift in Sources */,
 				C62B7C8D22350E590048FCBA /* IMUIMessageContentViewProtocol.swift in Sources */,
@@ -1359,6 +1390,7 @@
 				C62B7C8722350E590048FCBA /* BundleMessageListExtension.swift in Sources */,
 				C62966A022322D7900ADBEE6 /* Moya+Extension.swift in Sources */,
 				C62B7C8B22350E590048FCBA /* IMUIViewCache.swift in Sources */,
+				C624F905223F55B100C2B380 /* ChatDialogVM.swift in Sources */,
 				C62D2DD7223265DA00A3A8B3 /* View+Extension.swift in Sources */,
 				C6E7DE48223A688000F6B117 /* Header.swift in Sources */,
 				C62B7C9722350E590048FCBA /* IMUIWebImageDownloader.swift in Sources */,

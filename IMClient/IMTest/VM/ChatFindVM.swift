@@ -61,6 +61,7 @@ extension ChatFindVM {
     fileprivate func find_user(reload: Bool) {
         if reload {
             self.model.page = 1
+            self.outputs.refreshResult.onNext(.end_foot)
             //拉取数据
             self.service.find_user(page: self.model.page)
                 .subscribe(onNext: { response in

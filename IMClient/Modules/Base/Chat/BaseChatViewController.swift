@@ -10,6 +10,8 @@ import UIKit
 import SnapKit
 import Starscream
 import ObjectMapper
+import RxCocoa
+import RxSwift
 
 class BaseChatViewController: BaseViewController {
     
@@ -47,18 +49,18 @@ class BaseChatViewController: BaseViewController {
         
         baseSetupUI()
         baseSetupSocket()
+        baseBindRx()
     }
     
     deinit {
-//        socket.disconnect()
-//        print("deinit: \(type(of: self))")
+        print("deinit: \(type(of: self))")
     }
     
     //MARK: - 私有成员
-    fileprivate var socket      : WebSocket!                //通讯对象
-    fileprivate var url         : String = baseURL_socket   //通讯地址
-    fileprivate var connected   : Bool   = false            //通讯连接
-    fileprivate var registered  : Bool   = false            //通讯注册
+    fileprivate var disposeBag  : DisposeBag = DisposeBag()
+    fileprivate var socket      : WebSocket {               //通讯对象
+        return BaseChatSession.shared.socket
+    }
     fileprivate var pageIndex   : Int    = 1                //页面索引
     fileprivate var pageLoading : Bool   = false            //页面加载
     fileprivate var pageEnded   : Bool   = false            //页面结束
@@ -68,10 +70,13 @@ class BaseChatViewController: BaseViewController {
     fileprivate lazy var target : User = {                  //目标对象
         return getTarget()
     }()
+    fileprivate var dialogid    : String?                   //会话标识
     fileprivate lazy var dialogtype : DialogType = {        //会话类型
         return getDialogType()
     }()
-    fileprivate var dialogid    : String?                   //会话标识
+    fileprivate var valid: Bool {                           //连接状态
+        return BaseChatSession.shared.valid()
+    }
 }
 
 //MARK: - 初始化
@@ -100,10 +105,25 @@ extension BaseChatViewController {
     }
     
     fileprivate func baseSetupSocket() {
-//        dialogid = getDialogId()
-//        socket = WebSocket(url: URL(string: url)!)
-//        socket.delegate = self
-//        socket.connect()
+        dialogid = getDialogId()
+        if valid { self.websocketDidRegister() }
+        BaseChatSession.shared.block_registered = { [unowned self] in
+            self.websocketDidRegister()
+        }
+    }
+    
+    fileprivate func baseBindRx() {
+        socket.rx.response.subscribe(onNext: { [unowned self] response in
+            switch response {
+            case .disconnected(let error):
+                self.websocketDidDisconnect(error: error)
+            case .message(let text):
+                self.websocketDidReceiveMessage(text: text)
+            default:
+                break
+            }
+        })
+        .disposed(by: disposeBag)
     }
 }
 
@@ -115,7 +135,7 @@ extension BaseChatViewController {
             refreshNoMore()
             return
         }
-        guard !self.pageLoading, connected else { return }
+        guard valid, !self.pageLoading else { return }
         self.pageLoading = true
         self.sendMessage(pageindex: pageIndex)
     }
@@ -134,26 +154,18 @@ extension BaseChatViewController {
     }
 }
 
-//MARK: - WebSocketDelegate
-extension BaseChatViewController: WebSocketDelegate {
+//MARK: - WebSocket Event
+extension BaseChatViewController {
     
-    func websocketDidConnect(socket: WebSocketClient) {
-        self.connected = true
-        //客户端注册
-        var message = ChatMessage()
-        message.sender = user.id!
-        message.cmd = .register
-        if let data = message.toJSONString() {
-            socket.write(string: data)
-        }
+    func websocketDidRegister() {
+        refreshHandler()
     }
     
-    func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
-        self.connected = false
+    func websocketDidDisconnect(error: Error?) {
         refreshEnded()
     }
     
-    func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
+    func websocketDidReceiveMessage(text: String) {
         guard let data = Mapper<BaseResult>().map(JSONString: text),
             let cmd = data.cmd else { return }
         let valid = data.result.code.valid()
@@ -167,10 +179,6 @@ extension BaseChatViewController: WebSocketDelegate {
             return
         }
         switch cmd {                    //命令判断
-        case .register:                 //通讯注册
-            //Refresh When Registered
-            refreshHandler()
-            registered = true
         case .chat:                     //发送结果
             if let dataDict = data.dataDict,
                 let message = ChatMessage(map: Map(mappingType: .fromJSON, JSON: dataDict)) {
@@ -228,11 +236,9 @@ extension BaseChatViewController: WebSocketDelegate {
             } else {
                 refreshEnded()
             }
+        default:
+            break
         }
-    }
-    
-    func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
-        
     }
 }
 
@@ -247,7 +253,8 @@ extension BaseChatViewController {
         message.dialogtype = dialogtype
         message.dialogid = dialogid
         message.pageindex = pageIndex
-        if connected, let data = message.toJSONString() {
+        message.tokened()
+        if valid, let data = message.toJSONString() {
             socket.write(string: data)
         }
     }
@@ -264,7 +271,8 @@ extension BaseChatViewController {
             message._id = "\(Date.timeid())"
             message.type = .text
             message.body = text
-            if connected, let data = message.toJSONString() {
+            message.tokened()
+            if valid, let data = message.toJSONString() {
                 socket.write(string: data)
             }
             self.appendMessage(user: user, message: message, issender: true, status: .sending)

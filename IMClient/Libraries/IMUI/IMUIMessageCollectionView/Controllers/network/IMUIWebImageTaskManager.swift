@@ -118,8 +118,8 @@ class IMUIWebImageTaskManager: NSObject {
 extension IMUIWebImageTaskManager: URLSessionDataDelegate {
   @available(iOS 7.0, *)
   public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive response: URLResponse, completionHandler: @escaping (URLSession.ResponseDisposition) -> Swift.Void) {
-    
-    print("didReceive")
+    //yTest
+    //print("didReceive")
     completionHandler(.allow)
   }
   
@@ -133,7 +133,8 @@ extension IMUIWebImageTaskManager: URLSessionDataDelegate {
   
   @available(iOS 7.0, *)
   public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, willCacheResponse proposedResponse: CachedURLResponse, completionHandler: @escaping (CachedURLResponse?) -> Swift.Void) {
-    print("willCacheResponse")
+    //yTest
+    //print("willCacheResponse")
     completionHandler(proposedResponse)
     if let downloader = taskCach.getDownloader(with: dataTask) {
       self.taskCach.removeTask(dataTask)

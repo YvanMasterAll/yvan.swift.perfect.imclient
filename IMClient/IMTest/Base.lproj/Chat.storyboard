@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--ChatVC-->
+        <!--Chat RoomVC-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="ChatVC" id="BYZ-38-t0r" customClass="ChatVC" customModule="IMClient" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChatRoomVC" id="BYZ-38-t0r" customClass="ChatRoomVC" customModule="IMClient" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -83,6 +83,36 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YpB-6y-R1u" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1618" y="123"/>
+        </scene>
+        <!--ChatVC-->
+        <scene sceneID="Zm4-4B-dnZ">
+            <objects>
+                <viewController storyboardIdentifier="ChatVC" id="1zs-0R-Zi8" customClass="ChatVC" customModule="IMClient" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="o2N-It-gKD">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="aQL-X0-fdJ">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="aQL-X0-fdJ" firstAttribute="top" secondItem="X5p-Xy-lhj" secondAttribute="top" id="0Sf-XS-wn9"/>
+                            <constraint firstItem="X5p-Xy-lhj" firstAttribute="bottom" secondItem="aQL-X0-fdJ" secondAttribute="bottom" id="KX7-yj-8aF"/>
+                            <constraint firstItem="X5p-Xy-lhj" firstAttribute="trailing" secondItem="aQL-X0-fdJ" secondAttribute="trailing" id="Tuv-qS-hU0"/>
+                            <constraint firstItem="aQL-X0-fdJ" firstAttribute="leading" secondItem="o2N-It-gKD" secondAttribute="leading" id="uaT-dr-LDW"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="X5p-Xy-lhj"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="aQL-X0-fdJ" id="GTT-GK-aKb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5qo-Mc-zmS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2396" y="112"/>
         </scene>
     </scenes>
 </document>

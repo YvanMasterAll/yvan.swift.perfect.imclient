@@ -318,7 +318,7 @@ extension IMUIInputView: IMUICustomInputViewDataSource {
     
     let cellIdentifier = "IMUIFeatureListIconCell"
     let cell = inputBarItemListView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! IMUIFeatureListIconCell
-    cell.layout(with: dataArr[indexPath.item],onClickCallback: { cell in
+    cell.layout(with: dataArr[indexPath.item],onClickCallback: { [unowned self] cell in
       if cell.featureData!.featureType != .none {
         self.currentType = cell.featureData!.featureType
         self.switchToFeature(type: self.currentType, button: cell.featureIconBtn)
