@@ -64,6 +64,8 @@ extension UserSigninVC {
                     return
                 }
                 STHud.showSuccess(text: response.msg)
+                let vc = ChatDialogVC.storyboard(from: "Chat")
+                self.navigationController?.pushViewController(vc, animated: true)
             })
             .disposed(by: disposeBag)
     }

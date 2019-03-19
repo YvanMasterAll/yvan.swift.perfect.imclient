@@ -29,14 +29,7 @@ class ChatRoomVC: BaseChatViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //yTest
-//        dialogtype = DialogType.single
-//        target = User()
-//        target?.id = 2
-//        target?.nickname = "yi001"
-//        target?.avatar = ""
-        
+
         setupUI()
     }
 }

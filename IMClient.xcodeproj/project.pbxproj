@@ -139,6 +139,7 @@
 		C63740C922376645002081ED /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63740C822376645002081ED /* ChatMessage.swift */; };
 		C64F8C332239068400EEAC53 /* STPlace.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C64F8C322239068400EEAC53 /* STPlace.bundle */; };
 		C66125A322377F8800ABF5E5 /* ChatDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66125A222377F8800ABF5E5 /* ChatDialog.swift */; };
+		C6637899224090040056E1A6 /* UserProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6637898224090040056E1A6 /* UserProfileVC.swift */; };
 		C6900A8C223CF68C00F1383F /* ChatDialogVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6900A8B223CF68C00F1383F /* ChatDialogVC.swift */; };
 		C6900A8E223CF78200F1383F /* BaseTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6900A8D223CF78200F1383F /* BaseTableView.swift */; };
 		C6900A90223CF85C00F1383F /* ChatFindVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6900A8F223CF85C00F1383F /* ChatFindVC.swift */; };
@@ -149,6 +150,7 @@
 		C6900AA1223D15B600F1383F /* TableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6900AA0223D15B600F1383F /* TableView+Extension.swift */; };
 		C6900AA3223D1C8200F1383F /* BaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6900AA2223D1C8200F1383F /* BaseHelper.swift */; };
 		C695F30E2238B7D50015C642 /* STPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = C695F30D2238B7D50015C642 /* STPlace.swift */; };
+		C6D389C8223FA40E0091E87C /* PHAsset+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D389C7223FA40E0091E87C /* PHAsset+Extension.swift */; };
 		C6E7DE45223A688000F6B117 /* PullToRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E7DE3B223A688000F6B117 /* PullToRefresh.swift */; };
 		C6E7DE46223A688000F6B117 /* Footer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E7DE3C223A688000F6B117 /* Footer.swift */; };
 		C6E7DE47223A688000F6B117 /* Availability.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E7DE3D223A688000F6B117 /* Availability.swift */; };
@@ -325,6 +327,7 @@
 		C63740C822376645002081ED /* ChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
 		C64F8C322239068400EEAC53 /* STPlace.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = STPlace.bundle; sourceTree = "<group>"; };
 		C66125A222377F8800ABF5E5 /* ChatDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDialog.swift; sourceTree = "<group>"; };
+		C6637898224090040056E1A6 /* UserProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileVC.swift; sourceTree = "<group>"; };
 		C6900A8B223CF68C00F1383F /* ChatDialogVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDialogVC.swift; sourceTree = "<group>"; };
 		C6900A8D223CF78200F1383F /* BaseTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableView.swift; sourceTree = "<group>"; };
 		C6900A8F223CF85C00F1383F /* ChatFindVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatFindVC.swift; sourceTree = "<group>"; };
@@ -335,6 +338,7 @@
 		C6900AA0223D15B600F1383F /* TableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TableView+Extension.swift"; sourceTree = "<group>"; };
 		C6900AA2223D1C8200F1383F /* BaseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseHelper.swift; sourceTree = "<group>"; };
 		C695F30D2238B7D50015C642 /* STPlace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STPlace.swift; sourceTree = "<group>"; };
+		C6D389C7223FA40E0091E87C /* PHAsset+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PHAsset+Extension.swift"; sourceTree = "<group>"; };
 		C6E7DE3B223A688000F6B117 /* PullToRefresh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PullToRefresh.swift; sourceTree = "<group>"; };
 		C6E7DE3C223A688000F6B117 /* Footer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Footer.swift; sourceTree = "<group>"; };
 		C6E7DE3D223A688000F6B117 /* Availability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Availability.swift; sourceTree = "<group>"; };
@@ -704,6 +708,7 @@
 			children = (
 				C62D2DCC22324AFD00A3A8B3 /* UserSigninVC.swift */,
 				C62D2DCE22324B8F00A3A8B3 /* UserRegisterVC.swift */,
+				C6637898224090040056E1A6 /* UserProfileVC.swift */,
 			);
 			path = C;
 			sourceTree = "<group>";
@@ -837,6 +842,7 @@
 				C60EECB7223BC21100FA6BF7 /* ViewController+Extension.swift */,
 				C6900AA0223D15B600F1383F /* TableView+Extension.swift */,
 				C627C234223E849100C45B01 /* Starscreen+RxSwift.swift */,
+				C6D389C7223FA40E0091E87C /* PHAsset+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1356,6 +1362,7 @@
 				C62B7C9322350E590048FCBA /* IMUIMessageModelProtocol.swift in Sources */,
 				C6344E552230EECA0069D67E /* AppDelegate.swift in Sources */,
 				C62B7CB922350E590048FCBA /* IMUIProgressButton.swift in Sources */,
+				C6637899224090040056E1A6 /* UserProfileVC.swift in Sources */,
 				C62B7CA822350E590048FCBA /* IMUICustomInputViewDelegate.swift in Sources */,
 				C6344EAF223135CF0069D67E /* BaseUtil.swift in Sources */,
 				C62B7CCD223548930048FCBA /* BaseChatViewController.swift in Sources */,
@@ -1414,6 +1421,7 @@
 				C6E7DE4C223A688000F6B117 /* ElasticRefreshControl.swift in Sources */,
 				C6344EB52231386E0069D67E /* Api.swift in Sources */,
 				C62B7C8C22350E590048FCBA /* IMUIReuseViewCache.swift in Sources */,
+				C6D389C8223FA40E0091E87C /* PHAsset+Extension.swift in Sources */,
 				C62D7BE22233BD4A00636990 /* Reactive+Extension.swift in Sources */,
 				C6E7DE4D223A688000F6B117 /* Left.swift in Sources */,
 				C6344EAC223132420069D67E /* BaseValidator.swift in Sources */,

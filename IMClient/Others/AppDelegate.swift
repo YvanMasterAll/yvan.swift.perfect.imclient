@@ -36,8 +36,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     //MARK: - Test
     func setupTest() {
-        //let vc = UserSigninVC.storyboard(from: "User")
-        let vc = ChatDialogVC.storyboard(from: "Chat")
+        var vc: BaseViewController!
+        //yTest
+        Environment.clearUser()
+        if Environment.tokened {
+             vc = ChatDialogVC.storyboard(from: "Chat")
+        } else {
+            vc = UserSigninVC.storyboard(from: "User")
+        }
         let nc = BaseNavigationController(rootViewController: vc)
         self.window?.rootViewController = nc
         self.window?.makeKeyAndVisible()

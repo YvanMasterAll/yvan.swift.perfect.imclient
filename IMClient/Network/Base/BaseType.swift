@@ -80,17 +80,19 @@ public enum Whether: BaseType {     //是否
 
 public enum MessageType: BaseType { //消息类型
     
-    case text
+    case text, image
     
     public var value: String {
         switch self {
         case .text               : return "文本"
+        case .image              : return "图片"
         }
     }
     
     init?(_ value: String) {
         switch value {
         case "文本", "text"       : self = .text
+        case "图片", "image"       : self = .image
         default                  : return nil
         }
     }

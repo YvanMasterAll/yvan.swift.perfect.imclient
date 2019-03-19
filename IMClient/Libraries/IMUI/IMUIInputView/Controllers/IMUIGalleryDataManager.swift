@@ -10,7 +10,7 @@ import UIKit
 import Photos
 
 class IMUIGalleryDataManager: NSObject {
-  static var maxSeletedCount = 9
+  static var maxSeletedCount = 3
   
   static var targetSize = CGSize(width: 200, height: 200)
   

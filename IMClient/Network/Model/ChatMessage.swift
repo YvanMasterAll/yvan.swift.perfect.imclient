@@ -17,6 +17,7 @@ public struct ChatMessage: BaseModel {
     var dialogid    : String?
     var sender      : Int?
     var receiver    : Int?
+    var _body       : String?           //临时消息, 本地使用
     var body        : String?
     var type        : MessageType?
     var dialogtype  : DialogType?
@@ -39,6 +40,7 @@ public struct ChatMessage: BaseModel {
         dialogid    <- map["dialogid"]
         sender      <- map["sender"]
         receiver    <- map["receiver"]
+        _body       <- map["_body"]
         body        <- map["body"]
         type        <- (map["type"], transfromOfType())
         dialogtype  <- (map["dialogtype"], transfromOfType())

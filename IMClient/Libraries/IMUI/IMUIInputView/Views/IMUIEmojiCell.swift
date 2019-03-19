@@ -9,7 +9,7 @@
 import UIKit
 
 class IMUIEmojiCell: UICollectionViewCell, IMUIFeatureCellProtocol {
-  var featureDelegate: IMUIFeatureViewDelegate?
+  weak var featureDelegate: IMUIFeatureViewDelegate?
   
   @IBOutlet weak var emojiCollectionView: UICollectionView!
   @IBOutlet weak var emojiSeletorView: UICollectionView!

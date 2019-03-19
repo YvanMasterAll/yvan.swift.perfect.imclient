@@ -19,8 +19,12 @@ public enum BaseApi {
     //MARK: - 用户模块
     case register(username: String, password: String)
     case signin(username: String, password: String)
+    case signout
+    case profile(id: Int)
     //MARK: - 发现模块
     case find_user(page: Int)
+    //MARK: - 文件模块
+    case upload_chat_image(msgid: String, url: URL)
 }
 
 extension BaseApi: TargetType {
@@ -36,8 +40,12 @@ extension BaseApi: TargetType {
         //MARK: - 用户模块
         case .register:         return "/user/register"
         case .signin:           return "/user/signin"
+        case .signout:          return "/user/signout"
+        case .profile:          return "/user/profile"
         //MARK: - 发现模块
         case .find_user:        return "/find/user/list"
+        //MARK: - 文件模块
+        case .upload_chat_image:return "/file/chat/image"
         }
     }
     
@@ -47,7 +55,10 @@ extension BaseApi: TargetType {
         //MARK: - 用户模块
         case .register,
              .signin,
-             .find_user:
+             .signout,
+             .profile,
+             .find_user,
+             .upload_chat_image:
             return .post
         default:
             return .get
@@ -72,8 +83,12 @@ extension BaseApi: TargetType {
                 "password": password
             ]
             return .requestParameters(parameters: params, encoding: URLEncoding.default)
+        case .profile(let id):
+            return .requestParameters(parameters: ["id": id], encoding: URLEncoding.default)
         case .find_user(let page):
             return .requestParameters(parameters: ["page": page], encoding: URLEncoding.default)
+        case .upload_chat_image(let msgid, let url):
+            return .uploadCompositeMultipart([MultipartFormData(provider: .file(url), name: "")], urlParameters: ["_id": msgid])
         default:
             return .requestPlain
         }

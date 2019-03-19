@@ -12,7 +12,7 @@ private var CellIdentifier = ""
 
 class IMUIGalleryContainerCell: UICollectionViewCell, IMUIFeatureCellProtocol {
   
-  var featureDelegate: IMUIFeatureViewDelegate?
+  weak var featureDelegate: IMUIFeatureViewDelegate?
   
   
   @IBOutlet weak var permissionDenyedView: IMUIPermissionDenyedView!
@@ -25,16 +25,16 @@ class IMUIGalleryContainerCell: UICollectionViewCell, IMUIFeatureCellProtocol {
   }
   
   func addPhotoObserver() {
-    PHPhotoLibrary.requestAuthorization { (status) in
+    PHPhotoLibrary.requestAuthorization { [weak self] (status) in
       DispatchQueue.main.async {
         switch status {
         case .authorized:
-          PHPhotoLibrary.shared().register(self)
-          self.permissionDenyedView.isHidden = true
+          PHPhotoLibrary.shared().register(self!)
+          self?.permissionDenyedView.isHidden = true
           break
         default:
-          self.permissionDenyedView.type = "相册"
-          self.permissionDenyedView.isHidden = false
+          self?.permissionDenyedView.type = "相册"
+          self?.permissionDenyedView.isHidden = false
           break
         }
       }

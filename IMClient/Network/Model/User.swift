@@ -51,3 +51,40 @@ public struct User: BaseModel {
         token       <- map["token"]
     }
 }
+
+public struct UserProfile: BaseModel {
+    
+    var id          : Int?
+    var nickname    : String?
+    var age         : Int?
+    var avatar      : String?
+    var signature   : String?
+    var email       : String?
+    var address     : String?
+    var college     : String?
+    var gender      : Gender?
+    var createtime  : Date?
+    var updatetime  : Date?
+    var status      : Status?
+    
+    public init(){}
+    
+    public init?(map: Map) {
+        mapping(map: map)
+    }
+    
+    public mutating func mapping(map: Map) {
+        id          <- map["id"]
+        nickname    <- map["nickname"]
+        age         <- map["age"]
+        avatar      <- map["avatar"]
+        signature   <- map["signature"]
+        email       <- map["email"]
+        address     <- map["address"]
+        college     <- map["college"]
+        gender      <- (map["gender"], transfromOfType())
+        createtime  <- (map["createtime"], transfromOfDate())
+        updatetime  <- (map["updatetime"], transfromOfDate())
+        status      <- (map["status"], transfromOfType())
+    }
+}

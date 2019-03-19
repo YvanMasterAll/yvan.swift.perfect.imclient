@@ -31,7 +31,7 @@ open class IMUICustomInputView: UIView {
   @objc open weak var inputViewDelegate: IMUICustomInputViewDelegate?
   
   fileprivate weak var inputViewDataSource: IMUICustomInputViewDataSource?
-  @objc open var dataSource: IMUICustomInputViewDataSource? {
+  @objc weak open var dataSource: IMUICustomInputViewDataSource? {
     set {
       self.inputViewDataSource = newValue
       self.rightInputBarItemListView.dataSource = newValue
@@ -47,7 +47,7 @@ open class IMUICustomInputView: UIView {
     }
   }
   
-  @IBOutlet var view: UIView!
+  @IBOutlet weak var view: UIView!
   
   
   @IBOutlet weak var moreViewHeight: NSLayoutConstraint!

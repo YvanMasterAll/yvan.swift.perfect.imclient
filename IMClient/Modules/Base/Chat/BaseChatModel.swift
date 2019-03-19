@@ -85,7 +85,7 @@ class BaseChatModel: IMUIMessageModel {
                   text: text,
                   mediaPath: "",
                   layout:  layout,
-                  duration: 10)
+                  duration: nil)
     }
     
     //MARK: - 音频消息
@@ -124,10 +124,10 @@ class BaseChatModel: IMUIMessageModel {
                                               height: (img.cgImage?.height)!))
         }
         let layout = ChatCellLayout(isOutGoingMessage: isOutGoing,
-                                    isNeedShowTime: false,
+                                    isNeedShowTime: true,
                                     bubbleContentSize: imgSize,
                                     bubbleContentInsets: UIEdgeInsets.zero,
-                                    timeLabelContentSize: CGSize.zero,
+                                    timeLabelContentSize: CGSize(width: 200, height: 20),
                                     type: ChatMessageType.image)
         self.init(msgId: msgId,
                   messageStatus: .sending,
@@ -145,7 +145,9 @@ class BaseChatModel: IMUIMessageModel {
     convenience init(msgId: String,
                      imageUrl: String,
                      fromUser: ChatUser,
-                     isOutGoing: Bool) {
+                     isOutGoing: Bool,
+                     date: Date,
+                     status: IMUIMessageStatus) {
         let layout = ChatCellLayout(isOutGoingMessage: isOutGoing,
                                            isNeedShowTime: true,
                                            bubbleContentSize: CGSize(width: 120, height: 160),
@@ -153,10 +155,10 @@ class BaseChatModel: IMUIMessageModel {
                                            timeLabelContentSize: CGSize(width: 200, height: 20),
                                            type: ChatMessageType.image)
         self.init(msgId: msgId,
-                  messageStatus: .sending,
+                  messageStatus: status,
                   fromUser: fromUser,
                   isOutGoing: isOutGoing,
-                  date: Date(),
+                  date: date,
                   type: ChatMessageType.image,
                   text: "",
                   mediaPath: "",

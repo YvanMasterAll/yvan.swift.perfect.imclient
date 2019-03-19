@@ -16,14 +16,14 @@ private var CellIdentifier = ""
 
 public protocol IMUIFeatureCellProtocol {
   
-  var featureDelegate: IMUIFeatureViewDelegate? { set get }
+  weak var featureDelegate: IMUIFeatureViewDelegate? { set get }
   func activateMedia()
   func inactivateMedia()
 }
 
 public extension IMUIFeatureCellProtocol {
-
-  var featureDelegate: IMUIFeatureViewDelegate? {
+    
+    weak var featureDelegate: IMUIFeatureViewDelegate? {
     
     get { return nil }
     set { }
@@ -37,7 +37,7 @@ public extension IMUIFeatureCellProtocol {
 open class IMUIFeatureView: UIView {
   @IBOutlet open weak var featureCollectionView: UICollectionView!
   
-  var view: UIView!
+  weak var view: UIView!
   var currentType:IMUIFeatureType = .none
   
 //  open weak var inputViewDelegate: IMUIInputViewDelegate?
@@ -146,9 +146,9 @@ extension IMUIFeatureView: UICollectionViewDelegate, UICollectionViewDataSource,
   public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     switch currentType {
     case .none:
-      return 0
+        return 0
     default:
-      return 1
+        return 1
     }
   }
   
@@ -174,13 +174,13 @@ extension IMUIFeatureView: UICollectionViewDelegate, UICollectionViewDataSource,
   
   public func collectionView(_ collectionView: UICollectionView,
                       cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
+    //return collectionView.dequeueReusableCell(withReuseIdentifier: "IMUIGalleryContainerCell", for: indexPath) as! IMUIFeatureCellProtocol as! UICollectionViewCell
     return self.dataSource?.imuiInputView(collectionView, cellForItem: indexPath) ?? UICollectionViewCell()
   }
   
   public func collectionView(_ collectionView: UICollectionView, didEndDisplaying: UICollectionViewCell, forItemAt: IndexPath) {
-    let endDisplayingCell = didEndDisplaying as! IMUIFeatureCellProtocol
-    endDisplayingCell.inactivateMedia()
+    //let endDisplayingCell = didEndDisplaying as! IMUIFeatureCellProtocol
+    //endDisplayingCell.inactivateMedia()
   }
   
   func updateSelectedAssets() {

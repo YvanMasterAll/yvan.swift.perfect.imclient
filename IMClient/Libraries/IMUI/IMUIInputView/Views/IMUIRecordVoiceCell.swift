@@ -27,7 +27,7 @@ class IMUIRecordVoiceCell: UICollectionViewCell, IMUIFeatureCellProtocol {
   @IBOutlet weak var cancelVoiceBtnWidth: NSLayoutConstraint!
   
   var finishiRecorderCache:(voiceFilePath: String, duration: TimeInterval)?
-  var featureDelegate: IMUIFeatureViewDelegate?
+  weak var featureDelegate: IMUIFeatureViewDelegate?
   
   func inactivateMedia() {
     self.cancelPlayVoiceMode()

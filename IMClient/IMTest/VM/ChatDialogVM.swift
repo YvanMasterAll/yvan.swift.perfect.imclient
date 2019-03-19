@@ -14,10 +14,12 @@ import ObjectMapper
 
 struct ChatDialogVMInput {
     var refreshTap          : PublishSubject<Bool>
+    var signoutTap          : PublishSubject<Void>
 }
 struct ChatDialogVMOutput {
     var sections            : Driver<[ChatDialogSectionModel]>?
     var refreshResult       : PublishSubject<RefreshStatus>
+    var signoutResult       : PublishSubject<ResultType>
     var registered          : PublishSubject<Void>
 }
 class ChatDialogVM {
@@ -29,6 +31,7 @@ class ChatDialogVM {
         var models: BehaviorRelay<[ChatDialog_Message]>
     }
     fileprivate var model: Model!
+    fileprivate var userService = UserService.instance
     fileprivate var reload: Bool = true
     fileprivate var user: User = {
         return Environment.user ?? User()
@@ -42,13 +45,15 @@ class ChatDialogVM {
     
     //MARK: - Inputs
     var inputs: ChatDialogVMInput = {
-        return ChatDialogVMInput(refreshTap: PublishSubject<Bool>())
+        return ChatDialogVMInput(refreshTap: PublishSubject<Bool>(),
+                                 signoutTap: PublishSubject<Void>())
     }()
     
     //MARK: - Outputs
     var outputs: ChatDialogVMOutput = {
         return ChatDialogVMOutput(sections: nil,
                                   refreshResult: PublishSubject<RefreshStatus>(),
+                                  signoutResult: PublishSubject<ResultType>(),
                                   registered: PublishSubject<Void>())
     }()
     
@@ -81,6 +86,11 @@ class ChatDialogVM {
                 self.sendMessage()
             })
             .disposed(by: model.disposeBag)
+        self.inputs.signoutTap.asObserver()
+            .subscribe(onNext: {
+                self.signout()
+            })
+            .disposed(by: model.disposeBag)
     }
 }
 
@@ -98,6 +108,15 @@ extension ChatDialogVM {
         if valid, let data = message.toJSONString() {
             socket.write(string: data)
         }
+    }
+    
+    fileprivate func signout() {
+        Environment.clearUser()
+        self.userService.signout().asObservable()
+            .subscribe(onNext: { result in
+                self.outputs.signoutResult.onNext(result)
+            })
+            .disposed(by: model.disposeBag)
     }
 }
 

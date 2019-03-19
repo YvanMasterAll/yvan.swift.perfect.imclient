@@ -12,6 +12,7 @@ import Starscream
 import ObjectMapper
 import RxCocoa
 import RxSwift
+import Photos
 
 class BaseChatViewController: BaseViewController {
     
@@ -24,11 +25,6 @@ class BaseChatViewController: BaseViewController {
     }()
     
     func getUser() -> User {
-        //yTest
-//        var user = User()
-//        user.id = 4
-//        user.nickname = "yi002"
-//        user.avatar = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1534926548887&di=f107f4f8bd50fada6c5770ef27535277&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F11%2F67%2F23%2F69i58PICP37.jpg"
         return Environment.user ?? User()
     }
     
@@ -77,6 +73,7 @@ class BaseChatViewController: BaseViewController {
     fileprivate var valid: Bool {                           //连接状态
         return BaseChatSession.shared.valid()
     }
+    fileprivate var imageMessages: [String: ChatMessage] = [:] //图片消息
 }
 
 //MARK: - 初始化
@@ -279,6 +276,22 @@ extension BaseChatViewController {
         }
     }
     
+    func sendMessage(url: URL) {
+        var message = ChatMessage()
+        message.cmd = .chat
+        message.sender = self.user.id
+        message.receiver = self.target.id
+        message.dialogid = self.dialogid
+        message.dialogtype = .single
+        message._id = "\(Date.timeid())"
+        message.type = .image
+        message.body = url.absoluteString
+        message.tokened()
+        self.imageMessages[message._id!] = message
+        self.upload_image(msgid: message._id!, url: url)
+        self.appendMessage(user: self.user, message: message, issender: true, status: .sending)
+    }
+    
     func appendMessage(user: User,
                        message: ChatMessage,
                        issender: Bool,
@@ -300,6 +313,13 @@ extension BaseChatViewController {
                                      isOutGoing: issender,
                                      date: message.createtime ?? Date(),
                                      status: status)
+        case .image:
+            cmessage = BaseChatModel(msgId: msgId,
+                                     imageUrl: type_append == .update ? message._body!:body,
+                                     fromUser: cuser,
+                                     isOutGoing: issender,
+                                     date: message.createtime ?? Date(),
+                                     status: status)
         }
         switch type_append {
         case .append:
@@ -312,12 +332,52 @@ extension BaseChatViewController {
     }
 }
 
+//MARK: - 文件上传
+extension BaseChatViewController {
+    
+    fileprivate func upload_image(msgid: String, url: URL) {
+        FileService.instance.upload_chat_image(msgid: msgid, url: url).asObservable()
+            .subscribe(onNext: { [unowned self] response in
+                let data = response.0
+                let result = response.1
+                if result.code.valid(),
+                    let _ = data,
+                    var message = self.imageMessages[data!._id!] {
+                    message._body = message.body
+                    message.body = data!.body
+                    if let data = message.toJSONString() {
+                        self.socket.write(string: data)
+                    }
+                }
+            })
+            .disposed(by: self.disposeBag)
+    }
+}
+
 //MARK: - IMUIInputViewDelegate + IMUICustomInputViewDelegate
 extension BaseChatViewController: IMUIInputViewDelegate, IMUIMessageMessageCollectionViewDelegate {
     
     //MARK: - 文本消息
     func sendTextMessage(_ messageText: String) {
         self.sendMessage(text: messageText)
+    }
+    
+    //MARK: - 图片消息
+    func didSeletedGallery(AssetArr: [PHAsset]) {
+        for asset in AssetArr {
+            asset.getURL(handler: { [unowned self] _url in
+                if let url = _url {
+                    self.sendMessage(url: url)
+                }
+            })
+        }
+    }
+    
+    //MARK: - 隐藏弹出
+    func messageCollectionView(_ willBeginDragging: UICollectionView) {
+        DispatchQueue.main.async {
+            self.inputBar.hideFeatureView()
+        }
     }
 }
 
@@ -326,3 +386,5 @@ enum MessageAppendType {
     
     case append, update, insert
 }
+
+

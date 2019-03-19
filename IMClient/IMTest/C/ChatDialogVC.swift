@@ -19,13 +19,25 @@ class ChatDialogVC: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navBarLeftTitle = "发现"
+        navBarRightTitle = "Exit"
         setupUI()
         bindRx()
     }
     
     //MARK: - 继承方法
+    
     override func reload() {
         reloadData()
+    }
+    
+    override func navBarRightClicked() {
+        vmodel.inputs.signoutTap.onNext(())
+    }
+    
+    override func navBarLeftClicked() {
+        let vc = ChatFindVC.storyboard(from: "Chat")
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     //MARK: - 私有成员
@@ -66,6 +78,8 @@ extension ChatDialogVC {
                 switch item.messagetype! {
                 case .text:
                     cell.label_message.text = item.body
+                case .image:
+                    cell.label_message.text = "[图片]"
                 }
                 cell.label_name.text = item.name
                 if let date = item.createtime {
@@ -96,6 +110,12 @@ extension ChatDialogVC {
             .subscribe(onNext: { [unowned self] state in
                 BaseHelper.pageStateChanged(target: self,
                                             tableView: self.tableView, state: state)
+            })
+            .disposed(by: disposeBag)
+        vmodel.outputs.signoutResult.asObserver()
+            .subscribe(onNext: { result in
+                let vc = UserSigninVC.storyboard(from: "User")
+                self.navigationController?.pushViewController(vc, animated: true)
             })
             .disposed(by: disposeBag)
     }

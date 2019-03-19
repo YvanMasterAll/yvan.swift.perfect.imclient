@@ -32,7 +32,7 @@ class IMUICameraCell: UICollectionViewCell, IMUIFeatureCellProtocol {
   open var cameraVC = IMUIHidenStatusViewController() // use to present full size mode viewcontroller
   var isFullScreenMode = false
   var isActivity = true
-  var featureDelegate: IMUIFeatureViewDelegate?
+  weak var featureDelegate: IMUIFeatureViewDelegate?
   
   override func awakeFromNib() {
       super.awakeFromNib()

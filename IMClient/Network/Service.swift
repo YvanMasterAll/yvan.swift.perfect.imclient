@@ -42,7 +42,7 @@ class UserService {
                 return data.result
             }
             .catchError { error in
-                return .just(ResultType(code: .failure))
+                return .just(ResultSet.requestFailed)
         }
     }
     
@@ -69,7 +69,44 @@ class UserService {
                 return data.result
             }
             .catchError { error in
-                return .just(ResultType(code: .failure))
+                return .just(ResultSet.requestFailed)
+            }
+    }
+    
+    /// 用户登出
+    ///
+    /// - Returns: 返回结果
+    func signout() -> Observable<ResultType> {
+        return BaseProvider.rx.request(.signout)
+            .mapObject(BaseResult.self)
+            .asObservable()
+            .observeOn(MainScheduler.instance)
+            .map { data in
+                return data.result
+            }
+            .catchError { error in
+                return .just(ResultSet.requestFailed)
+        }
+    }
+    
+    /// 用户简介
+    ///
+    /// - Parameter id: 用户标识
+    /// - Returns: 返回数据
+    func user_profile(id: Int) -> Observable<(UserProfile?, ResultType)> {
+        return BaseProvider.rx.request(.profile(id: id))
+            .mapObject(BaseResult.self)
+            .asObservable()
+            .observeOn(MainScheduler.instance)
+            .map { data in
+                if data.result.code.valid() {
+                    let profile = UserProfile(map: Map(mappingType: .fromJSON, JSON: data.dataDict!))!
+                    return (profile, data.result)
+                }
+                return (nil, data.result)
+            }
+            .catchError { error in
+                return .just((nil, ResultSet.requestFailed))
             }
     }
 }
@@ -94,5 +131,28 @@ class FindService {
                 return ([], data.result)
             }
             .catchErrorJustReturn(([], ResultSet.requestFailed))
+    }
+}
+
+class FileService {
+    
+    //MARK: - 单例
+    static let instance = FileService()
+    private init() { }
+    
+    //MARK: - 聊天图片
+    func upload_chat_image(msgid: String, url: URL) -> Observable<(ChatMessage?, ResultType)> {
+        return BaseProvider.rx.request(.upload_chat_image(msgid: msgid, url: url))
+            .mapObject(BaseResult.self)
+            .asObservable()
+            .observeOn(MainScheduler.instance)
+            .map{ data in
+                if data.result.code.valid() {
+                    let message = ChatMessage(map: Map(mappingType: .fromJSON, JSON: data.dataDict!))!
+                    return (message, data.result)
+                }
+                return (nil, data.result)
+            }
+            .catchErrorJustReturn((nil, ResultSet.requestFailed))
     }
 }

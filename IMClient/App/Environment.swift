@@ -57,6 +57,7 @@ struct Environment {
     //MARK: - 环境清理
     static func clearUser() {
         self.userDefaults.removeObject(forKey: UserDefaultsKeys.token.rawValue)
+        self.userDefaults.removeObject(forKey: UserDefaultsKeys.user.rawValue)
     }
     
     private enum UserDefaultsKeys: String {

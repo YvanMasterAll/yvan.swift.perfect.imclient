@@ -37,6 +37,19 @@ class BaseChatSession {
 extension BaseChatSession {
     
     fileprivate func baseBindRx() {
+        BaseStatus.asObserver()
+            .subscribe(onNext: { state in
+                switch state {
+                case .signin:
+                    self.socket.disconnect()
+                    self.socket.connect()
+                case .signout:
+                    self.socket.disconnect()
+                default:
+                    break
+                }
+            })
+            .disposed(by: disposeBag)
         socket.rx.response.subscribe(onNext: { [unowned self] response in
             switch response {
             case .connected:

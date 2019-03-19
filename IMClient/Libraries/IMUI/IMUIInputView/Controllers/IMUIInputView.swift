@@ -28,7 +28,7 @@ public enum IMUIFeatureType {
   case none
 }
 
-public protocol IMUIFeatureViewDelegate: NSObjectProtocol {
+@objc public protocol IMUIFeatureViewDelegate: NSObjectProtocol {
   
   func didSelectPhoto(with images: [UIImage])
   func startRecordVoice()
@@ -318,17 +318,17 @@ extension IMUIInputView: IMUICustomInputViewDataSource {
     
     let cellIdentifier = "IMUIFeatureListIconCell"
     let cell = inputBarItemListView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! IMUIFeatureListIconCell
-    cell.layout(with: dataArr[indexPath.item],onClickCallback: { [unowned self] cell in
+    cell.layout(with: dataArr[indexPath.item],onClickCallback: { [weak self] cell in
       if cell.featureData!.featureType != .none {
-        self.currentType = cell.featureData!.featureType
-        self.switchToFeature(type: self.currentType, button: cell.featureIconBtn)
-        self.showFeatureView()
-        self.reloadFeaturnView()
+        self?.currentType = cell.featureData!.featureType
+        self?.switchToFeature(type: self!.currentType, button: cell.featureIconBtn)
+        self?.showFeatureView()
+        self?.reloadFeaturnView()
       }
 
       switch cell.featureData!.featureType {
       case .none:
-        self.clickSendBtn(cell: cell)
+        self?.clickSendBtn(cell: cell)
         break
       default:
         break

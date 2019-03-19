@@ -137,5 +137,51 @@ extension SigninVM {
     }
 }
 
+struct ProfileVMInput {
+    var profileTap      : PublishSubject<Int>
+}
+struct ProfileVMOutput {
+    var profileResult   : PublishSubject<(UserProfile?, ResultType)>
+}
+class ProfileVM {
+    
+    //MARK: - 私有成员
+    fileprivate struct Model {
+        var disposeBag: DisposeBag
+    }
+    fileprivate var model: Model!
+    fileprivate var service = UserService.instance
+    
+    //MARK: - Inputs
+    var inputs: ProfileVMInput = {
+        return ProfileVMInput(profileTap: PublishSubject<Int>())
+    }()
+    
+    //MARK: - Outputs
+    var outputs: ProfileVMOutput = {
+        return ProfileVMOutput(profileResult: PublishSubject<(UserProfile?, ResultType)>())
+    }()
+    
+    init(disposeBag: DisposeBag) {
+        self.model = Model(disposeBag: disposeBag)
+        //Rx
+        self.inputs.profileTap.asObserver()
+            .subscribe(onNext: { id in
+                self.profile(id: id)
+            })
+            .disposed(by: model.disposeBag)
+    }
+}
 
+extension ProfileVM {
+    
+    //MARK: - 用户简介
+    fileprivate func profile(id: Int) {
+        self.service.user_profile(id: id).asObservable()
+            .subscribe(onNext: { (data, result) in
+                self.outputs.profileResult.onNext((data, result))
+            })
+            .disposed(by: self.model.disposeBag)
+    }
+}
 
