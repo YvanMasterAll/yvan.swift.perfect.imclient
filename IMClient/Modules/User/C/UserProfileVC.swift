@@ -24,6 +24,7 @@ class UserProfileVC: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navBarTitle = "简介"
         setupUI()
         bindRx()
     }
@@ -53,7 +54,7 @@ extension UserProfileVC {
     
     fileprivate func bindRx() {
         vmodel.outputs.profileResult.asObserver()
-            .subscribe(onNext: { response in
+            .subscribe(onNext: { [unowned self] response in
                 let data = response.0
                 let result = response.1
                 if result.code.valid() {

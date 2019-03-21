@@ -14,7 +14,7 @@ class BaseHelper {
     static func pageStateChanged(target: StatePageProtocol,
                                  tableView: BaseTableView,
                                  state: RefreshStatus) {
-        target.hide_place()
+        if state != .nodata { target.hide_place() }
         DispatchQueue.main.async {
             switch state {
             case .nonet:
@@ -28,7 +28,9 @@ class BaseHelper {
             case .nodata:
                 tableView.switchRefreshHeader(to: .normal(.none, 0))
                 tableView.switchRefreshFooter(to: FooterRefresherState.removed)
-                target.show_place()
+                BaseUtil.setDelay(delay: 0.5, { //延缓片刻提高体验
+                    target.show_place()
+                })
             case .end:
                 target.requested = true
                 tableView.switchRefreshHeader(to: .normal(.success, 0))

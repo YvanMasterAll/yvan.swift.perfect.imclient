@@ -19,6 +19,8 @@ class ChatDialogVC: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        needReload = true
+        navBarTitle = "会话"
         navBarLeftTitle = "发现"
         navBarRightTitle = "Exit"
         setupUI()
@@ -103,7 +105,7 @@ extension ChatDialogVC {
             .disposed(by: disposeBag)
         vmodel.outputs.registered.asObserver()
             .subscribe(onNext: { [unowned self] in
-                self.tableView.switchRefreshHeader(to: .refreshing)
+                self.show_loading()
             })
             .disposed(by: disposeBag)
         vmodel.outputs.refreshResult.asObservable()
@@ -113,9 +115,10 @@ extension ChatDialogVC {
             })
             .disposed(by: disposeBag)
         vmodel.outputs.signoutResult.asObserver()
-            .subscribe(onNext: { result in
+            .subscribe(onNext: { [unowned self] result in
                 let vc = UserSigninVC.storyboard(from: "User")
-                self.navigationController?.pushViewController(vc, animated: true)
+                let nc = BaseNavigationController(rootViewController: vc)
+                self.present(nc, animated: true, completion: nil)
             })
             .disposed(by: disposeBag)
     }

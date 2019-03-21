@@ -98,7 +98,10 @@ class ChatDialogVM {
 extension ChatDialogVM {
     
     fileprivate func sendMessage() {
-        guard valid else { return }
+        guard valid else {
+            outputs.refreshResult.onNext(.nonet)
+            return
+        }
         if reload { model.page = 1 } else { model.page += 1 }
         var message = ChatMessage()
         message.cmd = .list_dialog
@@ -111,7 +114,6 @@ extension ChatDialogVM {
     }
     
     fileprivate func signout() {
-        Environment.clearUser()
         self.userService.signout().asObservable()
             .subscribe(onNext: { result in
                 self.outputs.signoutResult.onNext(result)

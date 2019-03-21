@@ -179,7 +179,8 @@ extension BaseChatViewController {
         case .chat:                     //发送结果
             if let dataDict = data.dataDict,
                 let message = ChatMessage(map: Map(mappingType: .fromJSON, JSON: dataDict)) {
-                if user.id! == message.sender! {
+                if user.id! == message.sender!
+                    && target.id! == message.receiver {
                     dialogid = message.dialogid
                     self.appendMessage(user: user,
                                        message: message,
@@ -193,7 +194,8 @@ extension BaseChatViewController {
                 let message = ChatMessage(map: Map(mappingType: .fromJSON, JSON: dataDict)) {
                 switch dialogtype {
                 case .single:
-                    if user.id! == message.receiver {
+                    if user.id! == message.receiver
+                        && target.id! == message.sender {
                         dialogid = message.dialogid
                         var _message = message
                         _message._id = "\(Date.timeid())"
@@ -371,6 +373,14 @@ extension BaseChatViewController: IMUIInputViewDelegate, IMUIMessageMessageColle
                 }
             })
         }
+    }
+    
+    //MARK: - 头像点击
+    func messageCollectionView(didTapHeaderImageInCell: UICollectionViewCell, model: IMUIMessageProtocol) {
+        let message = model as! BaseChatModel
+        let vc = UserProfileVC.storyboard(from: "User")
+        vc.userid = Int(message.fromUser.userId())
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     //MARK: - 隐藏弹出

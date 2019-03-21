@@ -82,6 +82,9 @@ class UserService {
             .asObservable()
             .observeOn(MainScheduler.instance)
             .map { data in
+                Environment.clearUser()
+                //登出通知
+                BaseStatus.onNext(.signout)
                 return data.result
             }
             .catchError { error in

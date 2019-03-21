@@ -21,6 +21,7 @@ class BaseViewController: UIViewController, StoryboardLoadable, StatePageProtoco
     open var navBarLeftTitle    : String?           //导航栏左侧按钮
     open var navBarRightTitle   : String?           //导航栏左侧按钮
     open var navBarRightIcon    : String?           //导航栏右侧图标
+    open var needReload         : Bool = false      //重载判断
     
     //MARK: - 导航栏事件
     func navBarLeftClicked() { }
@@ -55,7 +56,6 @@ class BaseViewController: UIViewController, StoryboardLoadable, StatePageProtoco
     
     //MARK: - 私有成员
     fileprivate var basePlace: STPlace!             //占位视图
-    fileprivate var needReload: Bool = true         //重载判断
     internal var requested: Bool = false            //请求数据, 成功
 }
 
@@ -127,7 +127,6 @@ extension BaseViewController {
     }
     
     func show_place() {
-        needReload = false
         basePlace.show(style: .empty(type: .nodata, options: nil))
     }
     

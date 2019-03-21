@@ -19,6 +19,7 @@ class ChatFindVC: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        navBarTitle = "发现用户"
         setupUI()
         bindRx()
     }

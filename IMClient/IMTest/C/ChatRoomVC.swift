@@ -30,6 +30,7 @@ class ChatRoomVC: BaseChatViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        if let title = target.nickname { navBarTitle = title }
         setupUI()
     }
 }

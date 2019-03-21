@@ -19,6 +19,7 @@ class UserRegisterVC: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navBarTitle = "注册"
         setupUI()
         bindRx()
     }
@@ -58,7 +59,7 @@ extension UserRegisterVC {
             .bind(to: vmodel.inputs.registerTap)
             .disposed(by: disposeBag)
         vmodel.outputs.registerResult
-            .subscribe(onNext: { response in
+            .subscribe(onNext: { [unowned self] response in
                 guard response.code.valid() else {
                     STHud.showError(text: response.msg)
                     return

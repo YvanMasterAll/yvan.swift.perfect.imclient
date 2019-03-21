@@ -32,19 +32,21 @@ public class IMUIImageMessageContentView: UIView, IMUIMessageContentViewProtocol
       self.imageView.image = UIImage.imuiImage(with: "image-broken")
     }
     
-    task?.suspend()
     self.urlString = message.webImageUrl?() ?? ""
-    task = IMUIWebImageTaskManager.shared.downloadImage(self.urlString!) { (data, precent, urlString, error) in
-      if (error != nil) {
-        return
-      }
-      
-      if precent == 1.0 && data != nil {
-        let image = UIImage(data: data!)
-        if self.urlString == urlString {
-          self.imageView.image = image
-        }
-      }
-    }
+    //yTest
+//    task?.suspend()
+//    task = IMUIWebImageTaskManager.shared.downloadImage(self.urlString!) { (data, precent, urlString, error) in
+//      if (error != nil) {
+//        return
+//      }
+//
+//      if precent == 1.0 && data != nil {
+//        let image = UIImage(data: data!)
+//        if self.urlString == urlString {
+//          self.imageView.image = image
+//        }
+//      }
+//    }
+    self.imageView.kf.setImage(with: URL(string: self.urlString!))
   }
 }

@@ -25,26 +25,42 @@ class BaseChatSession {
     //MARK: - 单例模式
     static let shared = BaseChatSession()
     private init() {
-        socket.connect()
         baseBindRx()
+        setupTimer()
     }
     
     //MARK: - 私有成员
     fileprivate let disposeBag = DisposeBag()
+    fileprivate var timer: SwiftTimer!
 }
 
 //MARK: - 初始化
 extension BaseChatSession {
+    
+    fileprivate func setupTimer() {
+        socket.connect()
+        //Timer
+        timer = SwiftTimer.repeaticTimer(interval: .seconds(10)) {[unowned self] _ in
+            if !self.valid() {
+                self.socket.connect()
+            }
+        }
+        timer.start()
+    }
+    
+    fileprivate func resumeTimer() {
+        socket.disconnect()
+        timer.suspend()
+    }
     
     fileprivate func baseBindRx() {
         BaseStatus.asObserver()
             .subscribe(onNext: { state in
                 switch state {
                 case .signin:
-                    self.socket.disconnect()
-                    self.socket.connect()
+                    self.setupTimer()
                 case .signout:
-                    self.socket.disconnect()
+                    self.resumeTimer()
                 default:
                     break
                 }

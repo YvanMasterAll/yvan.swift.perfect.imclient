@@ -19,6 +19,7 @@ class UserSigninVC: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navBarTitle = "登陆"
         setupUI()
         bindRx()
     }
@@ -58,7 +59,7 @@ extension UserSigninVC {
             .bind(to: vmodel.inputs.signinTap)
             .disposed(by: disposeBag)
         vmodel.outputs.signinResult
-            .subscribe(onNext: { response in
+            .subscribe(onNext: { [unowned self] response in
                 guard response.code.valid() else {
                     STHud.showError(text: response.msg)
                     return

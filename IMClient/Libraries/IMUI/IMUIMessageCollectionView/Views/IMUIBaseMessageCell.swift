@@ -145,20 +145,21 @@ open class IMUIBaseMessageCell: UICollectionViewCell, IMUIMessageCellProtocol {
     
     task?.suspend()
     self.urlString = message.fromUser.avatarUrlString?() ?? ""
-    
-    task = IMUIWebImageTaskManager.shared.downloadImage(self.urlString!) { (data, precent, urlString, error) in
-      if (error != nil) {
-        return
-      }
-      
-      if precent == 1.0 && data != nil {
-        let image = UIImage(data: data!)
-        if self.urlString == urlString {
-          self.avatarImage.image = image
-        }
-      }
-      
-    }
+    //yTest
+//    task = IMUIWebImageTaskManager.shared.downloadImage(self.urlString!) { (data, precent, urlString, error) in
+//      if (error != nil) {
+//        return
+//      }
+//
+//      if precent == 1.0 && data != nil {
+//        let image = UIImage(data: data!)
+//        if self.urlString == urlString {
+//          self.avatarImage.image = image
+//        }
+//      }
+//
+//    }
+    self.avatarImage.kf.setImage(with: URL(string: self.urlString!))
     self.bubbleView.setupBubbleImage(resizeBubbleImage: message.resizableBubbleImage)
     
     let statusView = self.statusView as! IMUIMessageStatusViewProtocol
